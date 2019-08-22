@@ -1,17 +1,111 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+/* Beginning of navbar styling */
+.hover-underline-menu {
+  width: 100%;
 }
-
-a {
-  color: #00B7FF;
+.hover-underline-menu .menu {
+background-color: #536B78;
 }
+.hover-underline-menu .menu a {
+color: #F2DBB3;
+padding: 1.2rem 1.5rem;
+}
+.hover-underline-menu .menu .underline-from-center {
+position: relative;
+}
+.hover-underline-menu .menu .underline-from-center::after {
+content: "";
+position: absolute;
+top: 75%;
+border-bottom: 0.125rem solid #FC9653;
+left: 50%;
+right: 50%;
+transition: all 0.5s ease;
+}
+.hover-underline-menu .menu .underline-from-center:hover::after {
+left: 0;
+right: 0;
+transition: all 0.5s ease;
+}
+.menu {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 50px;
+  list-style: none;
+  border-radius: 10px;
+}
+.menu > li {
+  display: flex;
+}
+.underline-from-center {
+    text-decoration: none;
+    font-size: 1.2rem;
+  }
+/* End of navbar styling */
 
-.indexContainer {
-  background-color: rgba(255, 255, 255, 0.5);
+/* Beginning of card styling */
+.about-the-author {
+  background-color: #fefefe;
   padding: 1rem;
+  border: 1px solid #cacaca;
 }
+.about-the-author .separator-left {
+  text-align: left;
+}
+.about-the-author .separator-left::before, .about-the-author .separator-left::after {
+  display: table;
+  content: ' ';
+  -webkit-flex-basis: 0;
+      -ms-flex-preferred-size: 0;
+          flex-basis: 0;
+  -webkit-order: 1;
+      -ms-flex-order: 1;
+          order: 1;
+}
+.about-the-author .separator-left::after {
+  clear: both;
+}
+.about-the-author .separator-left::after {
+  position: relative;
+  width: 5rem;
+  border-bottom: 0.125rem solid #1779ba;
+  margin: 0.3rem auto 0;
+  margin-left: 0;
+}
+.about-the-author .author-title {
+  text-transform: uppercase;
+}
+.about-the-author .author-social {
+  text-align: center;
+  margin-top: 0.7rem;
+  margin-bottom: 0.7rem;
+}
+.about-the-author .author-social .fa-stack {
+  display: inline-block;
+}
+.about-the-author .author-social .fa-stack.facebook {
+  color: #4c70ba;
+}
+.about-the-author .author-social .fa-stack.facebook:hover, .about-the-author .author-social .fa-stack.facebook:focus {
+  color: #3b5998;
+}
+.about-the-author .author-social .fa-stack.twitter {
+  color: #83c3f3;
+}
+.about-the-author .author-social .fa-stack.twitter:hover, .about-the-author .author-social .fa-stack.twitter:focus {
+  color: #55acee;
+}
+.about-the-author .author-social .fa-stack.linkedin {
+  color: #009ee8;
+}
+.about-the-author .author-social .fa-stack.linkedin:hover, .about-the-author .author-social .fa-stack.linkedin:focus {
+  color: #007bb5;
+}
+.about-the-author .author-image {
+  border: 1px solid #cacaca;
+}
+.trip-image > img {
+  max-width: 100%;
+}
+/* End of card styling */
 
-img.tripCardContent {
-  border-radius: 50%;
-}
