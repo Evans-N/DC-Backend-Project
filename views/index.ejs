@@ -1,13 +1,44 @@
 <% include head %>
 
-<!DOCTYPE html>
-<html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-  </body>
-</html>
+<body>
+  <div class="indexContainer">
+    <div class="indexRow">
+      <div class="col col-12"> 
+        <h1>TRVLR</h1>
+      </div>
+      <div class="col col-12">
+        <div class="col col-8">
+          <h2>Trips</h2>
+          <div>
+            <% parsedData.forEach((trip)=> { %>
+              <div class="tripCard">
+                <!-- 
+                  Trip image on left (25%)
+                  Trip title on right top 
+                  Trip description under title
+                  Click anywhere on card links to the full trip page
+                -->
+                <a href="/users/trips/<%= trip.id %>">
+                  <div class="col col-12 tripCardContent">
+                    <div class="col col-3">
+                      <img src="  ">
+                    </div>
+                    <div class="col col-9">
+                      <h1><%= parsedData.title %></h1>
+                      <p><%= parsedData.tripDescription %></p>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            <% }) %>
+            <h4></h4>
+            <h4>Trip Two</h4>
+          </div>
+        </div>
+        <div class="col col-4">
+            <h2>News</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
