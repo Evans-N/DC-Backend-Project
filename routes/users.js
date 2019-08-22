@@ -16,4 +16,34 @@ router.get('/', function(req, res, next) {
   res.send('respond with a resource');
 });
 
+router.get('/landing', (res,req,next) => {
+  //MY PROFILE
+  //MY TRIPS
+  //VIEW TRIPS
+});
+
+router.get('/profile', (res,req,next) => {
+  //INDIVIDUAL USER PROFILE
+  //USER TRIPS
+});
+
+router.get('/profile/friends', (res,req,next) => {
+  //
+});
+
+//========TRIPS===========//
+router.get('/createTrip', (res,req,next) => {
+  //
+});
+
+router.post('/createTrip', (res,req,next) => {
+  //
+});
+
+router.get('/myTrips', (res,req,next) => {
+  //
+});
+
+
+
 module.exports = router;
