@@ -1,20 +1,4 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
-
-.indexContainer {
-  background-color: rgba(255, 255, 255, 0.5);
-  padding: 1rem;
-}
-
-.indexRow {
-
-}
 /* Beginning of navbar styling */
-img.tripCardContent {
-  border-radius: 50%;
-}
 .hover-underline-menu {
   width: 100%;
 }
@@ -124,3 +108,4 @@ transition: all 0.5s ease;
   max-width: 100%;
 }
 /* End of card styling */
+
