@@ -1,8 +1,40 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+.hover-underline-menu {
+    width: 100%;
 }
-
+.hover-underline-menu .menu {
+background-color: #536B78;
+}
+.hover-underline-menu .menu a {
+color: #F2DBB3;
+padding: 1.2rem 1.5rem;
+}
+.hover-underline-menu .menu .underline-from-center {
+position: relative;
+}
+.hover-underline-menu .menu .underline-from-center::after {
+content: "";
+position: absolute;
+top: 75%;
+border-bottom: 0.125rem solid #FC9653;
+left: 50%;
+right: 50%;
+transition: all 0.5s ease;
+}
+.hover-underline-menu .menu .underline-from-center:hover::after {
+left: 0;
+right: 0;
+transition: all 0.5s ease;
+}
+.menu {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 50px;
+    list-style: none;
+    border-radius: 10px;
+}
+.menu > li {display: flex;}
 a {
-  color: #00B7FF;
+    text-decoration: none;
+    font-size: 1.2rem;   
 }
