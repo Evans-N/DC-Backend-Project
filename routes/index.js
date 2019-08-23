@@ -102,6 +102,10 @@ router.get('/about', (req,res,next) => {
   res.render('about')
 });
 
+router.get('/safety', (req, res, next) => {
+  res.render('safety')
+});
+
 
 
 
