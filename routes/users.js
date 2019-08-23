@@ -36,7 +36,7 @@ router.get('/profile/friends', (req,res,next) => {
 
 //========TRIPS===========//
 router.get('/createTrip', (req,res,next) => {
-  res.render('createTrip');
+  res.render('tripCreate');
   //
 });
 
