@@ -3,9 +3,9 @@ create table users (
     first_name VARCHAR(20) not null,
     last_name VARCHAR(30) not null,
     email varchar(35) not null,
-    phone INTEGER not null,
-    password VARCHAR not null,
-    picture VARCHAR not null
+    phone VARCHAR not null,
+    password VARCHAR not null
+    -- picture VARCHAR not null
 );
 
 create table trips (

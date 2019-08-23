@@ -23,8 +23,15 @@ router.get('/landing', (req,res,next) => {
   //VIEW TRIPS
 });
 
-router.get('/profile', (req,res,next) => {
-  res.render('profile');
+//========USER============//
+router.get('/myProfile', (req,res,next) => {
+  res.render('myProfile');
+  //INDIVIDUAL USER PROFILE
+  //USER TRIPS
+});
+
+router.get('/myTrips', (req,res,next) => {
+  res.render('myTrips');
   //INDIVIDUAL USER PROFILE
   //USER TRIPS
 });
@@ -34,13 +41,18 @@ router.get('/profile/friends', (req,res,next) => {
   //
 });
 
-//========TRIPS===========//
-router.get('/createTrip', (req,res,next) => {
-  res.render('createTrip');
+router.get('/friends', (req,res,next) => {
+  res.render('friends');
   //
 });
 
-router.post('/createTrip', (req,res,next) => {
+//========TRIPS===========//
+router.get('/tripCreate', (req,res,next) => {
+  res.render('tripCreate');
+  //
+});
+
+router.post('/tripCreateProcess', (req,res,next) => {
   const createTripQuery = `
     INSERT INTO trips
       (tripName, tripLocation)
