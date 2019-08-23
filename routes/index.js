@@ -5,6 +5,14 @@ const bcrypt = require('bcrypt');
 const expressSession = require('express-session');
 const db = require('../db')
 
+const sessionsOptions = {
+  secret: process.env.SESSION_SECRET,  //this should be in our dotenv bc it SHOULD NOT BE ON GITHUB
+  resave: false, 
+  saveUninitialized: false 
+}
+
+router.use(expressSession(sessionsOptions));
+
 
 /* GET home page. */
 router.get('/', (req,res,next) => {
@@ -25,17 +33,13 @@ router.post('/loginProcess',(req,res) => {
   checkUser.then((results)=>{
       const correctPass = bcrypt.compareSync(req.body.password,results.password)
       if(correctPass){
-        console.log('login success')
-        console.log(results.email)
         //this is a valid user pass
-        // req.session.email = results.email;
-        // req.session.loggedin = true;
-        // req.session.email = results.email;
+        req.session.email = results.email;
+        req.session.loggedin = true;
         res.redirect('/users/myProfile') //brings the user to their landing page on login 
       } else {
         res.redirect('/login?msg=badPass')
       }
-      res.json(results);
     })
   checkUser.catch((err)=>{
     console.log('loginErr')
