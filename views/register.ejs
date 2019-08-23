@@ -21,28 +21,29 @@
                     </div>
                     <div class="row align-items-center mt-4">
                         <div class="col">
-                            <input type="email" name="email" class="form-control" placeholder="Email">
+                            <input type="email" name="email" class="form-control" placeholder="Email" required>
                         </div>
                     </div>
                     <div class="row align-items-center mt-4">
                         <div class="col">
                             <input type="number" name="phone_number" class="form-control" placeholder="Phone Number (no dashes)">
+                            <%# See https://stackoverflow.com/q/14894899/5209533 for more on international phone numbers %>
                         </div>
                     </div>
                     <div class="row align-items-center mt-4">
                         <div class="col">
-                            <input type="text" name="profile-picture" class="form-control"
-                                placeholder="Link an image for your profile picture! (Optional)">
+                            <input type="text" name="profile-picture" class="form-control" placeholder="Link an image for your profile picture! (Optional)">
                         </div>
                     </div>
                     <div class="row align-items-center mt-4">
                         <div class="col">
-                            <input type="password" name="password" class="form-control" placeholder="Password">
+                            <%# See the answer https://stackoverflow.com/a/19605207/5209533 on SO for more about using regex for password pattern reqs %>
+                            <input type="password" name="password" class="form-control" placeholder="Password" pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$" title="Must contain at least one upper case (A-Z) letter, one lower case letter (a-z), one digit (0-9), a special character (#?!@$%^&*-), and be a minimum of 8 characters in length." required>
                         </div>
                     </div>
                     <div class="row align-items-center mt-4">
                         <div class="col">
-                            <input type="password" name="password-checked" class="form-control" placeholder="Confirm Password">
+                            <input type="password" name="password-checked" class="form-control" placeholder="Confirm Password" required>
                         </div>
                     </div>
                     <div class="row justify-content-center mt-4">
