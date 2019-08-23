@@ -1,3 +1,15 @@
+.mainPage{
+  display: flex;
+  justify-content: space-between;
+}
+.content {
+  width: 65%;
+  margin-top: 2rem;
+}
+.sidebar {
+  width: 33%;
+  margin-top: 2rem;
+}
 /* Beginning of navbar styling */
 .hover-underline-menu {
   width: 100%;
@@ -26,21 +38,25 @@ left: 0;
 right: 0;
 transition: all 0.5s ease;
 }
+
 .menu {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  height: 50px;
+  height: 3rem;
   list-style: none;
   border-radius: 10px;
+
 }
-.menu > li {
-  display: flex;
+.menu > li {display: flex;}
+a {
+  text-decoration: none;
+  font-size: 1rem;
+  
 }
-.underline-from-center {
-    text-decoration: none;
-    font-size: 1.2rem;
-  }
+.menu-button {
+  display: none;
+}
 /* End of navbar styling */
 
 /* Beginning of card styling */
@@ -107,5 +123,20 @@ transition: all 0.5s ease;
 .trip-image > img {
   max-width: 100%;
 }
-/* End of card styling */
+.imageCity{
+  text-align: center;
+}
+.card{
+  margin: 2%;
+}
+.blurb{
+  padding-right: 0px;
+  padding-left: 0px;
 
+}
+/* End of card styling */
+/*Beginning of bulletin styling */
+.bulletin {
+  border: 1px solid black;
+  font-size: 1rem;
+}
