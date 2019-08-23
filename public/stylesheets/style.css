@@ -142,6 +142,7 @@ a {
   border: 1px solid black;
   font-size: 1rem;
 }
+
 /* End of bulletin styling */
 
 body{
@@ -369,3 +370,46 @@ body{
   }
 }
 /* end of profile styling */
+/* THIS IS THE START OF INDEX CSS */
+/* The hero image */
+.hero-image {
+background-image: url("../images/cliffside.jpg");
+height: 100%;
+width: 100%;
+/* Position and center the image to scale nicely on all screens */
+background-position: center;
+background-repeat: no-repeat;
+background-size: cover;
+color: white;
+}
+/* Place text in the middle of the image */
+.logoContainer {
+  display: flex;
+  flex-direction: column;
+  text-align: center; 
+  width: 70%;
+  margin: auto;
+}
+.userHomeContainer{
+  display: flex;
+}
+.divider hr{
+  width: 5%;
+  height: 20%;
+  color:white;
+  padding:15px;
+}
+/* THIS IS THE END OF INDEX CSS */
+
+/* THIS IS THE START OF THE LOGIN CSS */
+.registerContainer{
+  background: #D9D9D980;
+  background-color: 0.3;
+  width: 80%;
+}
+.loginForm{
+  background: #D9D9D980;
+  background-color: 0.3;
+  width: 50%;
+  margin: 0px;
+}
