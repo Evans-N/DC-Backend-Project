@@ -3,9 +3,9 @@ create table users (
     first_name VARCHAR(20) not null,
     last_name VARCHAR(30) not null,
     email varchar(35) not null,
-    phone VARCHAR not null,
-    password VARCHAR not null
-    -- picture VARCHAR not null
+    phone VARCHAR(15) not null,
+    password VARCHAR not null,
+    picture VARCHAR not null
 );
 
 create table trips (
@@ -16,7 +16,7 @@ create table trips (
     start_date DATE not null,
     end_date DATE not null,
     creator_id INTEGER REFERENCES users(id),
-    description VARCHAR(250)
+    description VARCHAR(1000)
 );
 
 create table comments (

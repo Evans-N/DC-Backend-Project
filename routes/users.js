@@ -46,10 +46,9 @@ router.get('/friends', (req,res,next) => {
   //
 });
 
-//========TRIPS===========//
+
 router.get('/tripCreate', (req,res,next) => {
   res.render('tripCreate');
-  //
 });
 
 router.post('/tripCreateProcess', (req,res,next) => {
