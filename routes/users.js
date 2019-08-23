@@ -5,9 +5,9 @@ const bcrypt = require('bcrypt');
 const expressSession = require('express-session');
 require('dotenv');
 const sessionOptions = {
-  secret: process.env.SESSION_SECRET,
-  resave: false,
-  saveUninitialized: false
+   secret: process.env.SESSION_SECRET,
+   resave: false,
+   saveUninitialized: false
 }
 router.use(expressSession(sessionOptions));
 
@@ -34,7 +34,16 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/landing', (req,res,next) => {
-  res.render('landing');
+  const getTrips = `
+  SELECT * from trips`;
+  const genTrips = db.any(getTrips);
+  console.log('starting');
+  genTrips.then((results)=> {
+    // res.send(results)
+    res.render('landing', {
+      tripInfo: results
+    })
+  })
   //MY PROFILE
   //MY TRIPS
   //VIEW TRIPS
