@@ -5,11 +5,28 @@ const bcrypt = require('bcrypt');
 const expressSession = require('express-session');
 require('dotenv');
 const sessionOptions = {
-  secret: process.env.SESSION_SECRET,
-  resave: false,
-  saveUninitialized: false
+   secret: process.env.SESSION_SECRET,
+   resave: false,
+   saveUninitialized: false
 }
 router.use(expressSession(sessionOptions));
+
+router.use((req,res,next)=>{
+  if(req.session.userObject){
+    res.locals.id = req.session.userObject.id
+    res.locals.first_name = req.session.userObject.first_name
+    res.locals.email = req.session.userObject.email
+    next()
+  } else {
+    res.redirect('/?msg=notLoggedIn')
+  }
+
+
+  // res.locals -> for views
+  // res.redirect to login
+  // else{
+    // next()
+})
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -17,7 +34,16 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/landing', (req,res,next) => {
-  res.render('landing');
+  const getTrips = `
+  SELECT * from trips`;
+  const genTrips = db.any(getTrips);
+  console.log('starting');
+  genTrips.then((results)=> {
+    // res.send(results)
+    res.render('landing', {
+      tripInfo: results
+    })
+  })
   //MY PROFILE
   //MY TRIPS
   //VIEW TRIPS
@@ -54,12 +80,12 @@ router.get('/tripCreate', (req,res,next) => {
 router.post('/tripCreateProcess', (req,res,next) => {
   const createTripQuery = `
     INSERT INTO trips
-      (tripName, tripLocation)
+      (name, city, country, start_date, end_date, creator_id, description)
     VALUES
-      ($1,$2,$3)
+      ($1,$2,$3,$4,$5,$6,$7)
       returning id
   `
-  db.one(createTripQuery,[tripName,tripLocation]).then((resp)=>{
+  db.one(createTripQuery,[name, city, country, start_date, end_date, creator_id, description]).then((resp)=>{
     res.json({
       msg: "Trip Created!"
     })
