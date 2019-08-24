@@ -21,6 +21,8 @@ router.use((req,res,next)=>{
     res.redirect('/?msg=notLoggedIn')
   }
 
+  
+
 
   // res.locals -> for views
   // res.redirect to login
@@ -50,14 +52,23 @@ router.get('/landing', (req,res,next) => {
 });
 
 //========USER============//
-router.get('/myProfile', (req,res,next) => {
+router.get('/myProfile', (req,res,next) => {  
   res.render('myProfile');
   //INDIVIDUAL USER PROFILE
   //USER TRIPS
 });
 
 router.get('/myTrips', (req,res,next) => {
-  res.render('myTrips');
+  const getMyTrips = `
+  SELECT * FROM trips
+  WHERE creator_id = $1
+  `
+  db.any(getMyTrips, [req.session.userObject.id]).then((results) => {
+    res.render('myTrips', {
+      userTrips: results
+    });
+  })
+ 
   //INDIVIDUAL USER PROFILE
   //USER TRIPS
 });
@@ -85,12 +96,11 @@ router.post('/tripCreateProcess', (req,res,next) => {
       ($1,$2,$3,$4,$5,$6,$7)
       returning id
   `
-  db.one(createTripQuery,[name, city, country, start_date, end_date, creator_id, description]).then((resp)=>{
+  db.one(createTripQuery,[name, city, country, start_date, end_date, req.session.userObject.id, description]).then((resp)=>{
     res.json({
       msg: "Trip Created!"
     })
   })
-  //
 });
 
 router.get('/myTrips', (req,res,next) => {
