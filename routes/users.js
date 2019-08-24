@@ -18,8 +18,9 @@ router.get('/', function(req, res, next) {
 
 router.get('/landing', (req,res,next) => {
   const getTrips = `
-  SELECT * from trips`;
-  const genTrips = db.any(getTrips);
+  SELECT * from trips
+  WHERE id = $1`;
+  const genTrips = db.any(getTrips, [req.session.id]);
   console.log('starting');
   genTrips.then((results)=> {
     // res.send(results)
@@ -81,6 +82,54 @@ router.get('/myTrips', (req,res,next) => {
   //
 });
 
+router.get('/:userId', (req,res,next) => {
+  let userId = parseInt(req.params.userId)
+  let userDataQuery = `
+    select *
+    from users
+    where id = $1`
+  let userTripsQuery = `
+    select trips.name, trips.city, trips.country, trips.start_date, trips.end_date, trips.description 
+    from trips, users, attendance
+    where trips.creator_id = users.id and users.id = $1
+    or trips.id = attendance.trip_id and attendance.user_id = users.id and users.id = $1
+    group by trips.name, trips.city, trips.country, trips.start_date, trips.end_date, trips.description
+    order by trips.end_date desc;`
+    let userTripsCreatedQuery = `
+    select count(trips.name) 
+    from trips, users
+    where trips.creator_id = users.id and users.id = $1;`
+    let userTripsAttendedQuery = `
+    select count(attendance.id) 
+    from attendance, users
+    where attendance.user_id = users.id and users.id = $1;`
+  let userData = db.any(userDataQuery, [userId])
+  let userTrips = db.any(userTripsQuery, [userId])
+  let userTripsCreated= db.any(userTripsCreatedQuery, [userId])
+  let userTripsAttended= db.any(userTripsAttendedQuery, [userId])
+  userData.then((udt) => {
+    let userDataData = udt[0]
+    userTrips.then((utd)=>{
+      let userTripsData = utd
+      userTripsCreated.then((utcd)=>{
+        let userTripsCreatedData = utcd[0]
+        userTripsAttended.then((utad)=>{
+          let userTripsAttendedData = utad[0]
+          // res.json(userTripsData)
+          res.render('userGeneral', {
+            userData: userDataData,
+            userTrips: userTripsData,
+            userTripsCreated: userTripsCreatedData,
+            userTripsAttended: userTripsAttendedData
+          })
+        })
+      })
+    })
+
+  })
+  // res.render('userGeneral');  
+  //
+});
 
 
 module.exports = router;
