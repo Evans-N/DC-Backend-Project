@@ -20,6 +20,7 @@ router.use((req,res,next)=>{
   } else {
     res.redirect('/?msg=notLoggedIn')
   }
+})
 
   
 
@@ -28,7 +29,6 @@ router.use((req,res,next)=>{
   // res.redirect to login
   // else{
     // next()
-})
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -38,8 +38,8 @@ router.get('/', function(req, res, next) {
 router.get('/landing', (req,res,next) => {
   const getTrips = `
   SELECT * from trips
-  WHERE id = $1`;
-  const genTrips = db.any(getTrips, [req.session.id]);
+  where id = $1`;
+  const genTrips = db.any(getTrips, [req.session.userObject.id]);
   console.log('starting');
   genTrips.then((results)=> {
     // res.send(results)
@@ -121,8 +121,8 @@ router.get('/myTrips', (req,res,next) => {
   //
 });
 
-router.get('/:userId', (req,res,next) => {
-  let userId = parseInt(req.params.userId)
+router.get('/userProfiles/:userId', (req,res,next) => {
+  let userId = req.params.userId
   let userDataQuery = `
     select *
     from users
