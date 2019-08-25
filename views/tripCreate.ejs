@@ -3,7 +3,7 @@
 <body>
     <div class="row">
         <div class="col col-12">
-            <form action="/users/createTrip" method="post">
+            <form action="/users/tripCreateProcess" method="post">
                 <section>
                     <div class="container">
                         <div class="row justify-content-center">
@@ -16,43 +16,43 @@
                                 </div>
                                 <div class="row align-items-center">
                                     <div class="col mt-4">
-                                        <input type="text" name="trip-name" class="form-control"
+                                        <input type="text" name="name" class="form-control"
                                             placeholder="Name (give your trip a name!)">
                                     </div>
                                 </div>
                                 <div class="row align-items-center mt-4">
                                     <div class="col mt-4">
-                                        <input type="email" name="trip-email" class="form-control" placeholder="Email"
+                                        <input type="email" name="trip_email" class="form-control" placeholder="Email"
                                             required>
                                     </div>
                                 </div>
                                 <div class="row align-items-center mt-4">
                                     <div class="col mt-4">
-                                        <input type="text" name="trip-description" class="form-control"
+                                        <input type="text" name="description" class="form-control"
                                             placeholder="Trip Description">
                                     </div>
                                 </div>
                                 <div class="row align-items-center mt-4">
                                     <div class="col mt-4">
-                                        <input type="text" name="trip-country" class="form-control"
+                                        <input type="text" name="country" class="form-control"
                                             placeholder="Destination Country" required>
                                     </div>
                                 </div>
                                 <div class="row align-items-center mt-4">
                                     <div class="col mt-4">
-                                        <input type="text" name="trip-city" class="form-control"
+                                        <input type="text" name="city" class="form-control"
                                             placeholder="Destination City" required>
                                     </div>
                                 </div>
                                 <div class="row align-items-center mt-4">
                                     <div class="col mt-4">
-                                        <input onfocus="(this.type='date')" name="trip-departure-date"
+                                        <input onfocus="(this.type='date')" name="start_date"
                                             class="form-control" placeholder="Departure Date" required>
                                     </div>
                                 </div>
                                 <div class="row align-items-center mt-4">
                                     <div class="col mt-4">
-                                        <input onfocus="(this.type='date')" name="trip-return-date" class="form-control"
+                                        <input onfocus="(this.type='date')" name="end_date" class="form-control"
                                             placeholder="Return Date" required>
                                     </div>
                                 </div>

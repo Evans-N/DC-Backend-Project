@@ -21,6 +21,8 @@ router.use((req,res,next)=>{
     res.redirect('/?msg=notLoggedIn')
   }
 
+  
+
 
   // res.locals -> for views
   // res.redirect to login
@@ -51,14 +53,23 @@ router.get('/landing', (req,res,next) => {
 });
 
 //========USER============//
-router.get('/myProfile', (req,res,next) => {
+router.get('/myProfile', (req,res,next) => {  
   res.render('myProfile');
   //INDIVIDUAL USER PROFILE
   //USER TRIPS
 });
 
 router.get('/myTrips', (req,res,next) => {
-  res.render('myTrips');
+  const getMyTrips = `
+  SELECT * FROM trips
+  WHERE creator_id = $1
+  `
+  db.any(getMyTrips, [req.session.userObject.id]).then((results) => {
+    res.render('myTrips', {
+      userTrips: results
+    });
+  })
+ 
   //INDIVIDUAL USER PROFILE
   //USER TRIPS
 });
@@ -79,19 +90,30 @@ router.get('/tripCreate', (req,res,next) => {
 });
 
 router.post('/tripCreateProcess', (req,res,next) => {
+  const name = req.body.name;
+  const email = req.body.email;
+  const city = req.body.city;
+  const country = req.body.country;
+  const start_date = req.body.start_date;
+  const end_date = req.body.end_date;
+  const creator_id = req.session.userObject.id;
+  const description = req.body.description;
+  
+  // const createTripQuery = 
+  createTrip()
+  function createTrip(){
   const createTripQuery = `
-    INSERT INTO trips
-      (name, city, country, start_date, end_date, creator_id, description)
-    VALUES
-      ($1,$2,$3,$4,$5,$6,$7)
-      returning id
+  INSERT INTO trips
+    (name, city, country, start_date, end_date, creator_id, description)
+  VALUES
+    ($1,$2,$3,$4,$5,$6,$7)
+    returning id
   `
-  db.one(createTripQuery,[name, city, country, start_date, end_date, creator_id, description]).then((resp)=>{
-    res.json({
-      msg: "Trip Created!"
-    })
-  })
-  //
+  db.one(createTripQuery,[name, city, country, start_date, end_date, creator_id, description])
+  .then((resp)=>{
+        res.redirect('/users/myProfile')
+      })
+  }
 });
 
 router.get('/myTrips', (req,res,next) => {

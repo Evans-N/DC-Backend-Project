@@ -1,1 +1,25 @@
 <% include head %>
+<% include usersNavbar %>
+
+<body>
+    <h1><%= first_name %>'s Trips</h1>
+    <div class='row mainPage'>
+            <div class='col-12 col-md-8 content'>
+                <% userTrips.forEach((trip, i) => { %>
+                <div class="col col-12 card">
+                    <div class="row">
+                        <div class="col col-4 imageCity">
+                            <div class="trip-image">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/President_Barack_Obama.jpg/480px-President_Barack_Obama.jpg">
+                            </div>
+                            <h5><%= trip.city %>, <%= trip.country %></h5>
+                        </div>
+                        <div class="col col-8 blurb">
+                            <h4 class="separator-left"><%= trip.name %></h4>
+                            <p><%= trip.description %></p>
+                        </div>
+                    </div>
+                </div> 
+                <% }) %>       
+            </div>
+</body>

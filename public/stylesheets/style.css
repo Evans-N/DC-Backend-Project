@@ -11,6 +11,66 @@
   margin-top: 2rem;
 }
 /* Beginning of navbar styling */
+
+
+
+/* body.fixed-nav .site-wrap {
+  transform: scale(1);
+}
+
+h1 {
+  color: white;
+  font-size: 7vw;
+  text-shadow: 3px 4px 0 rgba(0,0,0,0.2);
+}
+
+nav {
+  background: black;
+  top: 0;
+  width: 100%;
+  transition:all 0.5s;
+  position: relative;
+  z-index: 1;
+}
+
+body.fixed-nav nav {
+  position: fixed;
+  box-shadow: 0 5px 0 rgba(0,0,0,0.1);
+}
+
+nav ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+}
+
+nav li {
+  flex: 1;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+li.logo {
+  max-width: 0;
+  overflow: hidden;
+  background: white;
+  transition: all 0.5s;
+  font-weight: 600;
+  font-size: 30px;
+}
+
+li.logo a {
+  color: black;
+}
+
+.fixed-nav li.logo {
+  max-width: 500px;
+} */
+
+
 .hover-underline-menu {
   width: 100%;
 }
@@ -56,7 +116,7 @@ a {
 }
 .menu-button {
   display: none;
-}
+} 
 /* End of navbar styling */
 
 /* Beginning of profile styling */
