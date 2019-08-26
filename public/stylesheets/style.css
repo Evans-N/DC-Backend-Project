@@ -1,4 +1,4 @@
-.mainPage{
+/* .mainPage{
   display: flex;
   justify-content: space-between;
 }
@@ -9,7 +9,7 @@
 .sidebar {
   width: 33%;
   margin-top: 2rem;
-}
+} */
 /* Beginning of navbar styling */
 
 /* 
@@ -69,7 +69,7 @@ li.logo a {
   max-width: 500px;
 }  */
 
-
+/* 
 .hover-underline-menu {
   width: 100%;
 }
@@ -115,7 +115,7 @@ a {
 }
 .menu-button {
   display: none;
-}  
+}   */
 /* End of navbar styling */
 
 /* Beginning of profile styling */
