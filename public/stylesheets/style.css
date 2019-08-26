@@ -12,9 +12,8 @@
 }
 /* Beginning of navbar styling */
 
-
-
-/* body.fixed-nav .site-wrap {
+/* 
+body.fixed-nav .site-wrap {
   transform: scale(1);
 }
 
@@ -68,7 +67,7 @@ li.logo a {
 
 .fixed-nav li.logo {
   max-width: 500px;
-} */
+}  */
 
 
 .hover-underline-menu {
@@ -116,7 +115,7 @@ a {
 }
 .menu-button {
   display: none;
-} 
+}  
 /* End of navbar styling */
 
 /* Beginning of profile styling */

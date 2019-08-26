@@ -121,7 +121,7 @@ router.get('/myTrips', (req,res,next) => {
   //
 });
 
-router.get('/:userId', (req,res,next) => {
+router.get('user/:userId', (req,res,next) => {
   let userId = parseInt(req.params.userId)
   let userDataQuery = `
     select *
@@ -169,6 +169,7 @@ router.get('/:userId', (req,res,next) => {
   // res.render('userGeneral');  
   //
 });
+
 
 
 module.exports = router;
