@@ -3,7 +3,10 @@ var router = express.Router();
 const db = require('../db');
 const bcrypt = require('bcrypt');
 const expressSession = require('express-session');
+const fs = require("fs");
 require('dotenv');
+var multer = require("multer"); //multi part form uploads...allows uploading of images
+var upload = multer({dest:'public/images/userImages'})
 const sessionOptions = {
    secret: process.env.SESSION_SECRET,
    resave: false,
@@ -23,8 +26,6 @@ router.use((req,res,next)=>{
 })
 
   
-
-
   // res.locals -> for views
   // res.redirect to login
   // else{
@@ -38,8 +39,8 @@ router.get('/', function(req, res, next) {
 router.get('/landing', (req,res,next) => {
   const getTrips = `
   SELECT * from trips
-  where id = $1`;
-  const genTrips = db.any(getTrips, [req.session.userObject.id]);
+  `;
+  const genTrips = db.any(getTrips);
   console.log('starting');
   genTrips.then((results)=> {
     // res.send(results)
@@ -89,7 +90,20 @@ router.get('/tripCreate', (req,res,next) => {
   res.render('tripCreate');
 });
 
-router.post('/tripCreateProcess', (req,res,next) => {
+// router.post('/tripCreateProcess', upload.single("trip_img"), (req,res,next) => {
+//   console.log(req.body)
+//   const newPath = `public/images/userImages/${req.file.originalname}`;
+//   fs.rename(req.file.path, newPath, (err)=>{
+//     if(err) throw error;
+//     console.log("file uploaded")
+//   })
+// })
+
+router.post('/tripCreateProcess', upload.single("trip_img"), (req,res,next) => {
+  const newPath = `public/images/userImages/${req.file.originalname}`;
+  fs.rename(req.file.path, newPath, (err)=>{
+    if(err) throw error;
+  })
   const name = req.body.name;
   const email = req.body.email;
   const city = req.body.city;
@@ -97,10 +111,10 @@ router.post('/tripCreateProcess', (req,res,next) => {
   const start_date = req.body.start_date;
   const end_date = req.body.end_date;
   const creator_id = req.session.userObject.id;
-  const description = req.body.description;
-  
+  const description = req.body.description;  
   // const createTripQuery = 
   createTrip()
+
   function createTrip(){
   const createTripQuery = `
   INSERT INTO trips
@@ -109,6 +123,7 @@ router.post('/tripCreateProcess', (req,res,next) => {
     ($1,$2,$3,$4,$5,$6,$7)
     returning id
   `
+  console.log(createTripQuery)
   db.one(createTripQuery,[name, city, country, start_date, end_date, creator_id, description])
   .then((resp)=>{
         res.redirect('/users/myProfile')
