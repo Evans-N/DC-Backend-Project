@@ -201,13 +201,21 @@ router.get('/userProfiles/:userId', (req,res,next) => {
         let userTripsCreatedData = utcd[0]
         userTripsAttended.then((utad)=>{
           let userTripsAttendedData = utad[0]
-          res.json(userTripsData)
-          // res.render('userGeneral', {
-          //   userData: userDataData,
-          //   userTrips: userTripsData,
-          //   userTripsCreated: userTripsCreatedData,
-          //   userTripsAttended: userTripsAttendedData
-          // })
+          if (userTripsData[0]){
+            res.render('userGeneral', {
+              userData: userDataData,
+              userTrips: userTripsData,
+              userTripsCreated: userTripsCreatedData,
+              userTripsAttended: userTripsAttendedData
+            })
+     
+        } else {
+            res.render('newProfile', {
+            userData: userDataData,
+            userTripsCreated: userTripsCreatedData,
+            userTripsAttended: userTripsAttendedData
+          })
+          }
         })
       })
     })
@@ -252,18 +260,27 @@ router.get('/myProfile', (req,res,next) => {
         userTripsAttended.then((utad)=>{
           let userTripsAttendedData = utad[0]
           // res.json(userTripsData)
-          res.render('myProfile', {
+          if (userTripsData[0]){
+            res.json('worked')
+            res.render('userGeneral', {
+              userData: userDataData,
+              userTrips: userTripsData,
+              userTripsCreated: userTripsCreatedData,
+              userTripsAttended: userTripsAttendedData
+            })
+     
+        } else {
+            res.render('newProfile', {
             userData: userDataData,
-            userTrips: userTripsData,
             userTripsCreated: userTripsCreatedData,
             userTripsAttended: userTripsAttendedData
           })
+          }
         })
       })
     })
 
   })
 });
-
 
 module.exports = router;
