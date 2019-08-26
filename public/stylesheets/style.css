@@ -1,4 +1,4 @@
-/* .mainPage{
+.mainPage{
   display: flex;
   justify-content: space-between;
 }
@@ -9,118 +9,15 @@
 .sidebar {
   width: 33%;
   margin-top: 2rem;
-} */
-/* Beginning of navbar styling */
+} 
 
-/* 
-body.fixed-nav .site-wrap {
-  transform: scale(1);
+.container {
+  margin-top: 7%;
 }
-
-h1 {
-  color: white;
-  font-size: 7vw;
-  text-shadow: 3px 4px 0 rgba(0,0,0,0.2);
-}
-
-nav {
-  background: black;
-  top: 0;
-  width: 100%;
-  transition:all 0.5s;
-  position: relative;
-  z-index: 1;
-}
-
-body.fixed-nav nav {
-  position: fixed;
-  box-shadow: 0 5px 0 rgba(0,0,0,0.1);
-}
-
-nav ul {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  display: flex;
-}
-
-nav li {
-  flex: 1;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-li.logo {
-  max-width: 0;
-  overflow: hidden;
-  background: white;
-  transition: all 0.5s;
-  font-weight: 600;
-  font-size: 30px;
-}
-
-li.logo a {
-  color: black;
-}
-
-.fixed-nav li.logo {
-  max-width: 500px;
-}  */
-
-/* 
-.hover-underline-menu {
-  width: 100%;
-}
-.hover-underline-menu .menu {
-background-color: #536B78;
-}
-.hover-underline-menu .menu a {
-color: #F2DBB3;
-padding: 1.2rem 1.5rem;
-}
-.hover-underline-menu .menu .underline-from-center {
-position: relative;
-}
-.hover-underline-menu .menu .underline-from-center::after {
-content: "";
-position: absolute;
-top: 75%;
-border-bottom: 0.125rem solid #FC9653;
-left: 50%;
-right: 50%;
-transition: all 0.5s ease;
-}
-.hover-underline-menu .menu .underline-from-center:hover::after {
-left: 0;
-right: 0;
-transition: all 0.5s ease;
-}
-
-.menu {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  height: 3rem;
-  list-style: none;
-  border-radius: 10px;
-
-}
-.menu > li {display: flex;}
-a {
-  text-decoration: none;
-  font-size: 1rem;
-  
-}
-.menu-button {
-  display: none;
-}   */
-/* End of navbar styling */
 
 /* Beginning of profile styling */
 /* Beginning of card styling */
-/* .about-the-author {
+.about-the-author {
   background-color: #fefefe;
   padding: 1rem;
   border: 1px solid #cacaca;
@@ -194,12 +91,14 @@ a {
   padding-right: 0px;
   padding-left: 0px;
 
-} */
+} 
 /* End of card styling */
 /*Beginning of bulletin styling */
 .bulletin {
   border: 1px solid black;
   font-size: 1rem;
+  border-radius: 10px;
+  padding: 2rem;
 }
 
 /* End of bulletin styling */
@@ -451,12 +350,14 @@ color: white;
 }
 /* .userHomeContainer{
   display: flex;
+justify-content: space-evenly;
 } */
+
 .divider hr{
-  width: 5%;
+  width: 8%;
   height: 20%;
   color:white;
-  padding:15px;
+  padding:1%;
 }
 /* THIS IS THE END OF INDEX CSS */
 
@@ -464,11 +365,226 @@ color: white;
 /* .registerContainer{
   background: #D9D9D980;
   background-color: 0.3;
-  width: 80%;
+  -webkit-box-shadow: 7px 4px 9px 2px rgba(0,0,0,0.83); 
+  box-shadow: 7px 4px 9px 2px rgba(0,0,0,0.83);
+  border-radius: 5%;
+  width: 100%;
+  margin:0px;
+  padding: 3%;
 }
+
 .loginForm{
   background: #D9D9D980;
   background-color: 0.3;
-  width: 50%;
+  -webkit-box-shadow: 7px 4px 9px 2px rgba(0,0,0,0.83); 
+  box-shadow: 7px 4px 9px 2px rgba(0,0,0,0.83);
+  border-radius: 5%;
+  width: 100%;
   margin: 0px;
-} */
+  padding: 3%;
+}
+/* BEGINNING OF SAFET PAGE CSS */
+
+.safetyPage{
+  background: #D9D9D9;
+  display: flex;
+}
+.safetyTitleContainer{
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  justify-content: center;
+}
+
+/* ENDING OF SAFET PAGE CSS */
+
+
+/* Beginning of Attendee Styling */
+
+.people-you-might-know {
+  background-color: #fefefe;
+  padding: 1rem 0 0;
+  border: 1px solid #cacaca;
+  box-shadow: 0 0 3.125rem rgba(0, 0, 0, 0.18);
+}
+
+.people-you-might-know .add-people-header {
+  padding: 0 0.9375rem;
+  border-bottom: 0.0625rem solid #cacaca;
+}
+
+.people-you-might-know .add-people-header .header-title {
+  font-weight: bold;
+}
+
+.people-you-might-know .add-people-section {
+  margin: 1rem 0 0;
+  padding-bottom: 1rem;
+  border-bottom: 0.0625rem solid #cacaca;
+}
+
+.people-you-might-know .add-people-section .about-people {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: flex-start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+}
+
+.people-you-might-know .add-people-section .about-people .about-people-avatar {
+  padding-right: 0.5rem;
+  padding-left: 0;
+}
+
+.people-you-might-know .add-people-section .about-people .about-people-avatar .avatar-image {
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
+  border: 0.0625rem solid #cacaca;
+}
+
+.people-you-might-know .add-people-section .about-people .about-people-author {
+  -webkit-flex: 1 0 0;
+      -ms-flex: 1 0 0px;
+          flex: 1 0 0;
+}
+
+.people-you-might-know .add-people-section .about-people .about-people-author .author-name {
+  color: #0a0a0a;
+  margin: 0.375rem 0 0;
+}
+
+.people-you-might-know .add-people-section .about-people .about-people-author .author-location,
+.people-you-might-know .add-people-section .about-people .about-people-author .author-mutual {
+  color: #8a8a8a;
+  margin-bottom: 0;
+  font-size: 0.85em;
+}
+
+.people-you-might-know .add-people-section .add-friend {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+@media screen and (max-width: 39.9375em) {
+  .people-you-might-know .add-people-section .add-friend {
+    -webkit-justify-content: flex-start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+  }
+}
+
+.people-you-might-know .add-people-section .add-friend .add-friend-action {
+  margin-top: 0.7rem;
+}
+
+.people-you-might-know .view-more-people {
+  margin: .7rem 0;
+}
+
+.people-you-might-know .view-more-people .view-more-text {
+  margin-bottom: 0;
+  text-align: center;
+}
+
+.people-you-might-know .view-more-people .view-more-text .view-more-link {
+  color: #1779ba;
+}
+
+.people-you-might-know .view-more-people .view-more-text .view-more-link:hover, .people-you-might-know .view-more-people .view-more-text .view-more-link:focus {
+  text-decoration: underline;
+}
+
+/* End of Attendee Styling  */
+/* START NAVBAR CSS */
+.navbar-colors{
+  background: #2B2D42;
+  color: #D9D9D9;
+}
+
+.navbar-colors a{
+  color: #D9D9D9;
+}
+.navbar-toggler-icon{
+  color: #D9D9D9;
+}
+.menu-hover-lines {
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 500;
+  letter-spacing: 1px;
+  transition: all 0.35s ease;
+}
+
+.menu-hover-lines li a {
+  padding: 0.75rem 0;
+  color: #D9D9D9;
+  position: relative;
+  margin-left: 1rem;
+}
+
+.menu-hover-lines li:first-child a {
+  margin-left: 0;
+}
+
+.menu-hover-lines li.active > a {
+  background-color: transparent;
+}
+
+.menu-hover-lines a:before,
+.menu-hover-lines a::after {
+  height: 3px;
+  position: absolute;
+  content: '';
+  transition: all 0.35s ease;
+  background-color: #F9CF00;
+  width: 0;
+}
+
+.menu-hover-lines a::before {
+  top: 0;
+  left: 0;
+  color: #F19F4D;
+}
+
+.menu-hover-lines a::after {
+  bottom: 0;
+  right: 0;
+}
+
+.menu-hover-lines a:hover,
+.menu-hover-lines li.active > a {
+  color: #F19F4D;
+  transition: all 0.35s ease;
+}
+
+.menu-hover-lines a:hover::before,
+.menu-hover-lines .active a::before,
+.menu-hover-lines a:hover::after,
+.menu-hover-lines .active a::after {
+  width: 100%;
+}
+/* END NAVBAR CSS */
+
+
+.userGeneral{
+  display: flex;
+}
+.carousel-item{
+  margin: auto;
+}
+.mainPage{
+  display: flex;
+  justify-content: space-around
+}
+body{
+  margin-top: 7%;
+}

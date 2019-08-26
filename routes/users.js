@@ -39,7 +39,7 @@ router.get('/', function(req, res, next) {
 router.get('/landing', (req,res,next) => {
   const getTrips = `
   SELECT * from trips
-  `;
+  LIMIT 10`;
   const genTrips = db.any(getTrips);
   console.log('starting');
   genTrips.then((results)=> {
@@ -54,16 +54,12 @@ router.get('/landing', (req,res,next) => {
 });
 
 //========USER============//
-router.get('/myProfile', (req,res,next) => {  
-  res.render('myProfile');
-  //INDIVIDUAL USER PROFILE
-  //USER TRIPS
-});
 
 router.get('/myTrips', (req,res,next) => {
   const getMyTrips = `
   SELECT * FROM trips
   WHERE creator_id = $1
+  LIMIT 4;
   `
   db.any(getMyTrips, [req.session.userObject.id]).then((results) => {
     res.render('myTrips', {
@@ -136,6 +132,41 @@ router.get('/myTrips', (req,res,next) => {
   //
 });
 
+router.get('/trips/:tripId', (req, res, next) => {
+  let tripId = parseInt(req.params.tripId)
+  let tripDataQuery = `
+    select *
+    from trips
+    where id = $1;`
+  let tripAttendanceQuery = `
+    select users.* from trips, users, attendance
+    where attendance.trip_id = trips.id 
+    and attendance.user_id = users.id 
+    and trips.id = $1;`
+  let tripCreatorQuery = `
+    select users.* from trips, users
+    where trips.creator_id = users.id
+    and trips.id = $1;`
+  let tripData = db.one(tripDataQuery, [tripId])
+  let tripAttendance = db.any(tripAttendanceQuery, [tripId])
+  let tripCreator = db.one(tripCreatorQuery, [tripId])
+  tripData.then((tD) => {
+    let tripDataData = tD //returns the trip data as an object
+    tripAttendance.then((tA)=>{
+      let tripAttendanceData = tA //returns an array of people attending
+      tripCreator.then((tC)=>{
+        let tripCreatorData = tC //returns trip creator as object
+        // res.json(tripCreatorData)
+        res.render('tripGeneral', {
+          tripData: tripDataData,
+          tripAttendance: tripAttendanceData,
+          tripCreator: tripCreatorData
+        })
+      })
+    })
+  })
+})
+
 router.get('/userProfiles/:userId', (req,res,next) => {
   let userId = req.params.userId
   let userDataQuery = `
@@ -143,11 +174,11 @@ router.get('/userProfiles/:userId', (req,res,next) => {
     from users
     where id = $1`
   let userTripsQuery = `
-    select trips.name, trips.city, trips.country, trips.start_date, trips.end_date, trips.description 
+    select trips.name, trips.city, trips.country, trips.start_date, trips.end_date, trips.description, trips.id 
     from trips, users, attendance
     where trips.creator_id = users.id and users.id = $1
     or trips.id = attendance.trip_id and attendance.user_id = users.id and users.id = $1
-    group by trips.name, trips.city, trips.country, trips.start_date, trips.end_date, trips.description
+    group by trips.name, trips.city, trips.country, trips.start_date, trips.end_date, trips.description, trips.id
     order by trips.end_date desc;`
     let userTripsCreatedQuery = `
     select count(trips.name) 
@@ -185,6 +216,53 @@ router.get('/userProfiles/:userId', (req,res,next) => {
   //
 });
 
+router.get('/myProfile', (req,res,next) => {
+  let userId = req.session.userObject.id
+  console.log(userId);
+  let userDataQuery = `
+    select *
+    from users
+    where id = $1`
+  let userTripsQuery = `
+    select trips.name, trips.city, trips.country, trips.start_date, trips.end_date, trips.description, trips.id 
+    from trips, users, attendance
+    where trips.creator_id = users.id and users.id = $1
+    or trips.id = attendance.trip_id and attendance.user_id = users.id and users.id = $1
+    group by trips.name, trips.city, trips.country, trips.start_date, trips.end_date, trips.description, trips.id
+    order by trips.end_date desc;`
+    let userTripsCreatedQuery = `
+    select count(trips.name) 
+    from trips, users
+    where trips.creator_id = users.id and users.id = $1;`
+    let userTripsAttendedQuery = `
+    select count(attendance.id) 
+    from attendance, users
+    where attendance.user_id = users.id and users.id = $1;`
+  let userData = db.any(userDataQuery, [userId])
+  let userTrips = db.any(userTripsQuery, [userId])
+  let userTripsCreated= db.any(userTripsCreatedQuery, [userId])
+  let userTripsAttended= db.any(userTripsAttendedQuery, [userId])
+  userData.then((udt) => {
+    let userDataData = udt[0]
+    userTrips.then((utd)=>{
+      let userTripsData = utd
+      userTripsCreated.then((utcd)=>{
+        let userTripsCreatedData = utcd[0]
+        userTripsAttended.then((utad)=>{
+          let userTripsAttendedData = utad[0]
+          // res.json(userTripsData)
+          res.render('myProfile', {
+            userData: userDataData,
+            userTrips: userTripsData,
+            userTripsCreated: userTripsCreatedData,
+            userTripsAttended: userTripsAttendedData
+          })
+        })
+      })
+    })
+
+  })
+});
 
 
 module.exports = router;

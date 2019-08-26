@@ -1,6 +1,7 @@
 <% include head %>
 <body style="background-color: blue">
-<% include usersNavbar %>
+        <% include usersNavbar %>
+    <div class="userGeneral">
         <div class='col-12 col-lg-4 profileCard'>
                 <div class="card-profile-stats">
                     <div class="card-profile-stats-intro">
@@ -30,9 +31,11 @@
         <% userTrips.forEach((trip, i) => { %>
             <% if(i % 2 === 0) { %>
                 <div class="timeline-item">
-                    <div class="timeline-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill-rule="evenodd" clip-rule="evenodd"><path d="M9 21h-9v-2h9v2zm6.695-2.88l-3.314-3.13-1.381 1.47 4.699 4.54 8.301-8.441-1.384-1.439-6.921 7zm-6.695-1.144h-9v-2h9v2zm8-3.976h-17v-2h17v2zm7-4h-24v-2h24v2zm0-4h-24v-2h24v2z"/></svg>
-                    </div>
+                        <div class="timeline-icon">
+                        <a href="/users/trips/<%=trip.id%>">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm3 8h-1.35c-.538 0-.65.221-.65.778v1.222h2l-.209 2h-1.791v7h-3v-7h-2v-2h2v-2.308c0-1.769.931-2.692 3.029-2.692h1.971v3z"/></svg>
+                        </a>
+                        </div>
                     <div class="timeline-content">
                         <h2 class="timeline-content-date"><%= trip.name %></h2>
                         <p><%= trip.description %></p>
@@ -41,7 +44,9 @@
             <% }else{ %>
                 <div class="timeline-item">
                     <div class="timeline-icon">
+                        <a href="/users/trips/<%=trip.id%>">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm3 8h-1.35c-.538 0-.65.221-.65.778v1.222h2l-.209 2h-1.791v7h-3v-7h-2v-2h2v-2.308c0-1.769.931-2.692 3.029-2.692h1.971v3z"/></svg>
+                        </a>
                     </div>
                     <div class="timeline-content right">
                         <h2 class="timeline-content-date"><%= trip.name %></h2>
@@ -52,4 +57,5 @@
         <% }) %>
         </div>        
     </div>
+</div>
 </body>
