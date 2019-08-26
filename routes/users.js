@@ -121,6 +121,41 @@ router.get('/myTrips', (req,res,next) => {
   //
 });
 
+router.get('/trips/:tripId', (req, res, next) => {
+  let tripId = parseInt(req.params.tripId)
+  let tripDataQuery = `
+    select *
+    from trips
+    where id = $1;`
+  let tripAttendanceQuery = `
+    select users.* from trips, users, attendance
+    where attendance.trip_id = trips.id 
+    and attendance.user_id = users.id 
+    and trips.id = $1;`
+  let tripCreatorQuery = `
+    select users.* from trips, users
+    where trips.creator_id = users.id
+    and trips.id = $1;`
+  let tripData = db.one(tripDataQuery, [tripId])
+  let tripAttendance = db.any(tripAttendanceQuery, [tripId])
+  let tripCreator = db.one(tripCreatorQuery, [tripId])
+  tripData.then((tD) => {
+    let tripDataData = tD //returns the trip data as an object
+    tripAttendance.then((tA)=>{
+      let tripAttendanceData = tA //returns an array of people attending
+      tripCreator.then((tC)=>{
+        let tripCreatorData = tC //returns trip creator as object
+        // res.json(tripCreatorData)
+        res.render('tripGeneral', {
+          tripData: tripDataData,
+          tripAttendance: tripAttendanceData,
+          tripCreator: tripCreatorData
+        })
+      })
+    })
+  })
+})
+
 router.get('/userProfiles/:userId', (req,res,next) => {
   let userId = req.params.userId
   let userDataQuery = `
