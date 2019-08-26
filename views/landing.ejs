@@ -3,36 +3,60 @@
 <% include usersNavbar %>
 <div class="container-fluid">
     <div class='row mainPage'>
-        <div class='col-12 col-md-8 content'>
-            <% tripInfo.forEach((trip, i) => { %>
-            <div class="col col-12 card">
-                <div class="row">
-                    <div class="col col-4 imageCity">
-                        <div class="trip-image">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/President_Barack_Obama.jpg/480px-President_Barack_Obama.jpg">
+        <div id="carouselExampleControls" class="carousel slide" data-ride="carousel" style="width: 33rem">
+                <div class="carousel-inner">
+                        <div class="card carousel-item active mb-4" style="width: 33rem">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/President_Barack_Obama.jpg/480px-President_Barack_Obama.jpg" class="img-thumbnail card-img-top" alt="Trip Image">
+                                <div class="card-body">
+                                    <h5 class="card-title">Check Out Awesome Trips</h5>
+                                    <p class="card-text">These are the most recent trips created by other Trvlrs</p>
+                                </div>
+                            </div>
+                        <% tripInfo.forEach((trip, i) => { %>
+                        <div class="card carousel-item mb-4" style="width: 33rem">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/President_Barack_Obama.jpg/480px-President_Barack_Obama.jpg" class="img-thumbnail card-img-top" alt="Trip Image">
+                            <div class="card-body">
+                                <h5 class="card-title"><%= trip.name %></h5>
+                                <p class="card-text"><%= trip.description %></p>
+                                <a href="/users/trips/<%=trip.id%>" class="btn btn-primary">Check It Out</a>
+                            </div>
                         </div>
-                        <h5><%= trip.city %>, <%= trip.country %></h5>
-                    </div>
-                    <div class="col col-8 blurb">
-                        <h4 class="separator-left"><%= trip.name %></h4>
-                        <p><%= trip.description %></p>
-                    </div>
+                    <% }) %>       
                 </div>
-            </div> 
-            <% }) %>       
-        </div>
+                <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev" style="color: black">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="sr-only">Next</span>
+                </a>
+              </div>
         <div class='col-md-4 col-12 sidebar'>
             <div class="col-12">
+                <h3> Safety Info</h3>
                 <ul class="bulletin">
-                    <% for(i=0;i<=5;i++){ %>
                         <li>
-                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laudantium deleniti consequuntur dignissimos excepturi illo? Repudiandae, ullam. A recusandae et fugit eos possimus autem debitis itaque? Assumenda ratione mollitia corrupti quaerat!
+                                Whether traveling, attending an event, or joining a Hangout, take the time to carefully review member profiles. 
+                                Read what members say about themselves and what other members have said about them. 
+                                Give yourself the time to thoroughly read through all the information available and don’t compromise. 
+                                If you’re uncomfortable, keep looking.
                         </li>
-                    <% } %>
+                        <li>
+                                If a person, situation or profile seems unsafe for any reason, move on. 
+                                Don’t worry about seeming rude. Be clear about your boundaries and don’t be shy about stating them. 
+                                If someone in a Hangout makes you uncomfortable, leave the Hangout or don’t attend. 
+                                Communicate clearly with others and take care of yourself. 
+                                If you’re uncomfortable staying alone with a member, consider staying with families or with couples.
+                        </li>
+                        <li>
+                                Do your homework, and be sure you’re aware of cultural and religious differences, sensitivities, and general safety recommendations for each place that you travel. Gender roles and expectations can differ wildly.
+                        </li>
                 </ul>
             </div>
         </div>   
     </div>  
 </div>
+
 <% include footer %>
 </body>
