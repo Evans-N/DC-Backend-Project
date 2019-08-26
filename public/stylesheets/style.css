@@ -75,10 +75,10 @@ li.logo a {
   width: 100%;
 }
 .hover-underline-menu .menu {
-background-color: #536B78;
+background-color: #2B2D42;
 }
 .hover-underline-menu .menu a {
-color: #F2DBB3;
+color: #D9D9D9;
 padding: 1.2rem 1.5rem;
 }
 .hover-underline-menu .menu .underline-from-center {
@@ -88,7 +88,7 @@ position: relative;
 content: "";
 position: absolute;
 top: 75%;
-border-bottom: 0.125rem solid #FC9653;
+border-bottom: 0.125rem solid #F19F4D;
 left: 50%;
 right: 50%;
 transition: all 0.5s ease;
@@ -452,12 +452,13 @@ color: white;
 }
 .userHomeContainer{
   display: flex;
+  justify-content: space-evenly;
 }
 .divider hr{
-  width: 5%;
+  width: 8%;
   height: 20%;
   color:white;
-  padding:15px;
+  padding:1%;
 }
 /* THIS IS THE END OF INDEX CSS */
 
@@ -465,11 +466,32 @@ color: white;
 .registerContainer{
   background: #D9D9D980;
   background-color: 0.3;
-  width: 80%;
+  -webkit-box-shadow: 7px 4px 9px 2px rgba(0,0,0,0.83); 
+  box-shadow: 7px 4px 9px 2px rgba(0,0,0,0.83);
+  border-radius: 5%;
+  width: 100%;
+  margin:0px;
+  padding: 3%;
 }
+
 .loginForm{
   background: #D9D9D980;
   background-color: 0.3;
-  width: 50%;
+  -webkit-box-shadow: 7px 4px 9px 2px rgba(0,0,0,0.83); 
+  box-shadow: 7px 4px 9px 2px rgba(0,0,0,0.83);
+  border-radius: 5%;
+  width: 100%;
   margin: 0px;
+  padding: 3%;
+}
+/* Safety Page CSS */
+.safetyPage{
+  background: #D9D9D9;
+  display: flex;
+}
+.safetyTitleContainer{
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  justify-content: center;
 }
