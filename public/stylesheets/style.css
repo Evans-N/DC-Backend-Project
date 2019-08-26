@@ -10,11 +10,6 @@
   width: 33%;
   margin-top: 2rem;
 } 
-
-.container {
-  margin-top: 7%;
-}
-
 /* Beginning of profile styling */
 /* Beginning of card styling */
 .about-the-author {
@@ -346,30 +341,29 @@ color: white;
   flex-direction: column;
   text-align: center; 
   width: 70%;
-  margin: auto;
 }
-/* .userHomeContainer{
+.userHomeContainer{
   display: flex;
 justify-content: space-evenly;
-} */
+}
 
-.divider hr{
+.divider{
   width: 8%;
-  height: 20%;
+  height: 100%;
   color:white;
-  padding:1%;
+  padding:10%;
 }
 /* THIS IS THE END OF INDEX CSS */
 
 /* THIS IS THE START OF THE LOGIN CSS */
-/* .registerContainer{
+.registerContainer{
   background: #D9D9D980;
   background-color: 0.3;
   -webkit-box-shadow: 7px 4px 9px 2px rgba(0,0,0,0.83); 
   box-shadow: 7px 4px 9px 2px rgba(0,0,0,0.83);
   border-radius: 5%;
   width: 100%;
-  margin:0px;
+  margin-top: 12%;
   padding: 3%;
 }
 
@@ -379,10 +373,12 @@ justify-content: space-evenly;
   -webkit-box-shadow: 7px 4px 9px 2px rgba(0,0,0,0.83); 
   box-shadow: 7px 4px 9px 2px rgba(0,0,0,0.83);
   border-radius: 5%;
-  width: 100%;
-  margin: 0px;
+  width: 115%;
+  margin-top: 20%;
   padding: 3%;
 }
+
+
 /* BEGINNING OF SAFET PAGE CSS */
 
 .safetyPage{
@@ -586,5 +582,8 @@ justify-content: space-evenly;
   justify-content: space-around
 }
 body{
-  margin-top: 7%;
+  margin-top: 5%;
 }
+/* START OF FOOTER CSS */
+
+/* END OF FOOTER CSS */

@@ -52,8 +52,10 @@ router.post('/loginProcess',(req,res) => {
 })
 
 //ALLOWS USERS TO REGISTER/POST TO DB
-router.post('/registerProcess', upload.single("profile_img"), (req,res,next) => {
-  const newPath = `public/images/profileImages/${req.file.originalname}`;
+router.post('/registerProcess', upload.single("profile_pic"), (req,res,next) => {
+  console.log(req.file)
+  console.log(req.body)
+  const newPath = `public/images/profilePics/${req.file.originalname}`;
   fs.rename(req.file.path, newPath, (err)=>{
     if(err) throw error;
   })
