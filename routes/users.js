@@ -96,6 +96,7 @@ router.get('/tripCreate', (req,res,next) => {
 // })
 
 router.post('/tripCreateProcess', upload.single("trip_img"), (req,res,next) => {
+  console.log(req.file)
   const newPath = `public/images/userImages/${req.file.originalname}`;
   fs.rename(req.file.path, newPath, (err)=>{
     if(err) throw error;
