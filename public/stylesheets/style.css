@@ -93,6 +93,8 @@
 .bulletin {
   border: 1px solid black;
   font-size: 1rem;
+  border-radius: 10px;
+  padding: 2rem;
 }
 
 /* End of bulletin styling */
@@ -376,8 +378,8 @@ justify-content: space-evenly;
   width: 100%;
   margin: 0px;
 } */
-  padding: 3%;
-}
+  /* padding: 3%;
+} */
 /* Safety Page CSS */
 .safetyPage{
   background: #D9D9D9;
@@ -496,3 +498,17 @@ justify-content: space-evenly;
 }
 
 /* End of Attendee Styling  */
+
+.userGeneral{
+  display: flex;
+}
+.carousel-item{
+  margin: auto;
+}
+.mainPage{
+  display: flex;
+  justify-content: space-around
+}
+body{
+  margin-top: 7%;
+}

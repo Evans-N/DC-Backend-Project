@@ -4,14 +4,14 @@
 <body>
     <h1><%= first_name %>'s Trips</h1>
     <div class='container'>
-            <div class='col-12 col-md-12 content'>
+            <div class='col-12 col-md-12 content' style="display: flex">
                 <% userTrips.forEach((trip, i) => { %>
                     <div class="card mb-4" style="width: 16rem">
                         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/President_Barack_Obama.jpg/480px-President_Barack_Obama.jpg" class="img-thumbnail card-img-top" alt="Trip Image">
                         <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                            <h5 class="card-title"><%=trip.name%></h5>
+                            <p class="card-text"><%=trip.description%></p>
+                            <a href="/users/trips/<%=trip.id%>" class="btn btn-primary">Go To Trip</a>
                         </div>
                     </div>
                 
