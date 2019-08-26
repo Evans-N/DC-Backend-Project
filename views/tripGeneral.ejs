@@ -1,1 +1,62 @@
 <% include head %>
+<body>
+    <% include usersNavbar %>
+    <div class='col-12 col-md-8 content'>
+        <div class="col col-12 card">
+            <div class="row">
+                <div class="col col-4 imageCity">
+                    <div class="trip-image">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/President_Barack_Obama.jpg/480px-President_Barack_Obama.jpg">
+                    </div>
+                    <h5><%= tripData.city %>, <%= tripData.country %></h5>
+                </div>
+                <div class="col col-8 blurb">
+                    <h4 class="separator-left"><%= tripData.name %></h4>
+                    <p><%= tripData.description %></p>
+                </div>
+            </div>
+        </div>       
+    </div>
+    <div class='col-12 col-lg-4 profileCard'>
+        <div class="card-profile-stats">
+            <div class="card-profile-stats-intro">
+                <a class="card-profile-stats-intro-pic" href="../../users/userprofiles/<%= tripCreator.id %>">
+                    <img class="card-profile-stats-intro-pic" src="<%= tripCreator.picture %>" alt="profile-image" />
+                </a>
+                <div class="card-profile-stats-intro-content">
+                    <h3> This Trip Was Created By</h3>
+                    <h3><%=tripCreator.first_name %> <%=tripCreator.last_name %></h3>
+                </div> <!-- /.card-profile-stats-intro-content -->
+            </div> <!-- /.card-profile-stats-intro -->
+            <hr />
+        </div> <!-- /.card-profile-stats -->
+    </div>
+    <div class="people-you-might-know">
+            <div class="add-people-header">
+              <h6 class="header-title">
+                People Attending This Trip
+              </h6>
+            </div>
+        <% tripAttendance.forEach((person, i) => { %>
+            <div class="row add-people-section">
+              <div class="small-12 medium-6 columns about-people">
+                <div class="about-people-avatar">
+                    <a href="../../users/userprofiles/<%= person.id %>">
+                        <img class="avatar-image" src="<%= person.picture %>" alt="<%=person.first_name %> <%=person.last_name %>">
+                    </a>
+                </div>
+                <div class="about-people-author">
+                  <p class="author-name">
+                    <%=person.first_name %> <%=person.last_name %>
+                  </p>
+                  <p class="author-location">
+                    <i class="fa fa-map-marker" aria-hidden="true"></i>
+                    Mumbai, India
+                  </p>
+                </div>    
+              </div>
+            </div>
+            <% }) %>
+          </div>
+          
+</body>
