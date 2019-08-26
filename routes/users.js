@@ -96,6 +96,7 @@ router.get('/tripCreate', (req,res,next) => {
 // })
 
 router.post('/tripCreateProcess', upload.single("trip_img"), (req,res,next) => {
+  console.log(req.file)
   const newPath = `public/images/userImages/${req.file.originalname}`;
   fs.rename(req.file.path, newPath, (err)=>{
     if(err) throw error;
@@ -200,13 +201,13 @@ router.get('/userProfiles/:userId', (req,res,next) => {
         let userTripsCreatedData = utcd[0]
         userTripsAttended.then((utad)=>{
           let userTripsAttendedData = utad[0]
-          // res.json(userTripsData)
-          res.render('userGeneral', {
-            userData: userDataData,
-            userTrips: userTripsData,
-            userTripsCreated: userTripsCreatedData,
-            userTripsAttended: userTripsAttendedData
-          })
+          res.json(userTripsData)
+          // res.render('userGeneral', {
+          //   userData: userDataData,
+          //   userTrips: userTripsData,
+          //   userTripsCreated: userTripsCreatedData,
+          //   userTripsAttended: userTripsAttendedData
+          // })
         })
       })
     })

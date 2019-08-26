@@ -5,6 +5,8 @@ const bcrypt = require('bcrypt');
 const expressSession = require('express-session');
 const db = require('../db')
 const fs = require('fs')
+var multer = require("multer"); //multi part form uploads...allows uploading of images
+var upload = multer({dest:'public/images/profilePics'})
 
 const sessionsOptions = {
   secret: process.env.SESSION_SECRET,  //this should be in our dotenv bc it SHOULD NOT BE ON GITHUB
@@ -50,13 +52,18 @@ router.post('/loginProcess',(req,res) => {
 })
 
 //ALLOWS USERS TO REGISTER/POST TO DB
-router.post("/registerProcess",(req,res,next) => {
+router.post('/registerProcess', upload.single("profile_pic"), (req,res,next) => {
+  console.log(req.file)
+  console.log(req.body)
+  const newPath = `public/images/profilePics/${req.file.originalname}`;
+  fs.rename(req.file.path, newPath, (err)=>{
+    if(err) throw error;
+  })
   const first_name = req.body.first_name;
   const last_name = req.body.last_name;
   const email = req.body.email;
   const phone = req.body.phone_number;
   const password = req.body.password;
-  const picture = ''
 
   const checkUserExistsQuery = `
   SELECT * FROM users WHERE email=$1
@@ -80,7 +87,7 @@ router.post("/registerProcess",(req,res,next) => {
       returning id
     `
     const hash = bcrypt.hashSync(password,10)
-    db.one(insertUserQuery,[first_name,last_name,email,phone,hash,picture])
+    db.one(insertUserQuery,[first_name,last_name,email,phone,hash,newPath])
     .then((resp)=>{
       res.redirect('/login')
       // res.redirect('/login?msg=useradded')
