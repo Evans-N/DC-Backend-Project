@@ -4,6 +4,7 @@ const request = require('request');
 const bcrypt = require('bcrypt');
 const expressSession = require('express-session');
 const db = require('../db')
+const fs = require('fs')
 
 const sessionsOptions = {
   secret: process.env.SESSION_SECRET,  //this should be in our dotenv bc it SHOULD NOT BE ON GITHUB
