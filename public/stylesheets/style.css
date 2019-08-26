@@ -11,6 +11,10 @@
   margin-top: 2rem;
 } 
 
+.container {
+  margin-top: 7%;
+}
+
 /* Beginning of profile styling */
 /* Beginning of card styling */
 .about-the-author {
@@ -375,10 +379,10 @@ justify-content: space-evenly;
   border-radius: 5%;
   width: 100%;
   margin: 0px;
-} */
+} 
   padding: 3%;
-}
-/* Safety Page CSS */
+}*/
+/* BEGINNING OF SAFET PAGE CSS */
 .safetyPage{
   background: #D9D9D9;
   display: flex;
@@ -389,6 +393,8 @@ justify-content: space-evenly;
   text-decoration: none;
   justify-content: center;
 }
+
+/* ENDING OF SAFET PAGE CSS */
 
 
 /* Beginning of Attendee Styling */
@@ -496,3 +502,72 @@ justify-content: space-evenly;
 }
 
 /* End of Attendee Styling  */
+/* START NAVBAR CSS */
+.navbar-colors{
+  background: #2B2D42;
+  color: #D9D9D9;
+}
+
+.navbar-colors a{
+  color: #D9D9D9;
+}
+.navbar-toggler-icon{
+  color: #D9D9D9;
+}
+.menu-hover-lines {
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 500;
+  letter-spacing: 1px;
+  transition: all 0.35s ease;
+}
+
+.menu-hover-lines li a {
+  padding: 0.75rem 0;
+  color: #D9D9D9;
+  position: relative;
+  margin-left: 1rem;
+}
+
+.menu-hover-lines li:first-child a {
+  margin-left: 0;
+}
+
+.menu-hover-lines li.active > a {
+  background-color: transparent;
+}
+
+.menu-hover-lines a:before,
+.menu-hover-lines a::after {
+  height: 3px;
+  position: absolute;
+  content: '';
+  transition: all 0.35s ease;
+  background-color: #F9CF00;
+  width: 0;
+}
+
+.menu-hover-lines a::before {
+  top: 0;
+  left: 0;
+  color: #F19F4D;
+}
+
+.menu-hover-lines a::after {
+  bottom: 0;
+  right: 0;
+}
+
+.menu-hover-lines a:hover,
+.menu-hover-lines li.active > a {
+  color: #F19F4D;
+  transition: all 0.35s ease;
+}
+
+.menu-hover-lines a:hover::before,
+.menu-hover-lines .active a::before,
+.menu-hover-lines a:hover::after,
+.menu-hover-lines .active a::after {
+  width: 100%;
+}
+/* END NAVBAR CSS */
