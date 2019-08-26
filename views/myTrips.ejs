@@ -3,10 +3,19 @@
 
 <body>
     <h1><%= first_name %>'s Trips</h1>
-    <div class='row mainPage'>
-            <div class='col-12 col-md-8 content'>
+    <div class='container'>
+            <div class='col-2 offset-5 col-md-8 content'>
                 <% userTrips.forEach((trip, i) => { %>
-                <div class="col col-12 card">
+                    <div class="card mb-4" style="width: 16rem">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/President_Barack_Obama.jpg/480px-President_Barack_Obama.jpg" class="img-thumbnail card-img-top" alt="Trip Image">
+                        <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                        </div>
+                    </div>
+                
+                    <!-- <div class="col col-12 card">
                     <div class="row">
                         <div class="col col-4 imageCity">
                             <div class="trip-image">
@@ -19,7 +28,8 @@
                             <p><%= trip.description %></p>
                         </div>
                     </div>
-                </div> 
+                </div>  -->
                 <% }) %>       
             </div>
+    </div>
 </body>

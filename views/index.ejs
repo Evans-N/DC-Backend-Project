@@ -14,23 +14,23 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 </head>
 <body>
-  <% include indexNavbar %>
+  <% include usersNavbar %>
     <div class="hero-image">
             <div class='logoContainer'>
+                <br>
+                <br>
+                <br>
                 <h1>Trvlr</h1>
                 <p>Join the Movement</p>
                 <hr>
         </div>
     <div class="userHomeContainer">
-      <div>
-        <% include login %>
-      </div>
-        <div class="divider">
-            <hr width="1%" size="50%" color="white"><h3>Or</h3><hr width="1%" size="50%" color="white">
-        </div>
-        <div>
-            <% include register %>
-        </div>
+      <div><% include login %></div>
+        <div class="divider"><hr><h3></h3><hr></div>
+        <div><% include register %></div>
     </div>
 </div>
+
+<% include footer %>
+
 </body>

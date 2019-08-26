@@ -1,35 +1,38 @@
 <% include head %>
 <body>
 <% include usersNavbar %>
-<div class='row mainPage'>
-    <div class='col-12 col-md-8 content'>
-        <% tripInfo.forEach((trip, i) => { %>
-        <div class="col col-12 card">
-            <div class="row">
-                <div class="col col-4 imageCity">
-                    <div class="trip-image">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/President_Barack_Obama.jpg/480px-President_Barack_Obama.jpg">
+<div class="container-fluid">
+    <div class='row mainPage'>
+        <div class='col-12 col-md-8 content'>
+            <% tripInfo.forEach((trip, i) => { %>
+            <div class="col col-12 card">
+                <div class="row">
+                    <div class="col col-4 imageCity">
+                        <div class="trip-image">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/President_Barack_Obama.jpg/480px-President_Barack_Obama.jpg">
+                        </div>
+                        <h5><%= trip.city %>, <%= trip.country %></h5>
                     </div>
-                    <h5><%= trip.city %>, <%= trip.country %></h5>
+                    <div class="col col-8 blurb">
+                        <h4 class="separator-left"><%= trip.name %></h4>
+                        <p><%= trip.description %></p>
+                    </div>
                 </div>
-                <div class="col col-8 blurb">
-                    <h4 class="separator-left"><%= trip.name %></h4>
-                    <p><%= trip.description %></p>
-                </div>
-            </div>
-        </div> 
-        <% }) %>       
-    </div>
-    <div class='col-md-4 col-12 sidebar'>
-        <div class="col-12">
-            <ul class="bulletin">
-                <% for(i=0;i<=5;i++){ %>
-                    <li>
-                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laudantium deleniti consequuntur dignissimos excepturi illo? Repudiandae, ullam. A recusandae et fugit eos possimus autem debitis itaque? Assumenda ratione mollitia corrupti quaerat!
-                    </li>
-                <% } %>
-            </ul>
+            </div> 
+            <% }) %>       
         </div>
-    </div>   
-</div>  
+        <div class='col-md-4 col-12 sidebar'>
+            <div class="col-12">
+                <ul class="bulletin">
+                    <% for(i=0;i<=5;i++){ %>
+                        <li>
+                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laudantium deleniti consequuntur dignissimos excepturi illo? Repudiandae, ullam. A recusandae et fugit eos possimus autem debitis itaque? Assumenda ratione mollitia corrupti quaerat!
+                        </li>
+                    <% } %>
+                </ul>
+            </div>
+        </div>   
+    </div>  
+</div>
+<% include footer %>
 </body>

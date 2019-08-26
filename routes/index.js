@@ -95,6 +95,9 @@ router.get('/safety', (req, res, next) => {
   res.render('safety')
 });
 
+router.get('/contact', (req, res, next) => {
+  res.render('about')
+});
 
 
 
