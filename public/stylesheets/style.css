@@ -609,6 +609,16 @@ body{
   margin-top: 50px;
   width: 100%;
 }
+
+/* editProfile */
+.update-profile {
+  margin-top: 5rem;
+}
+
+.editButton a{
+  color: white;
+}
+
 /* START OF FOOTER CSS */
 
 /* END OF FOOTER CSS */
