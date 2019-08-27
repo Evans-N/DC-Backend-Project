@@ -1,10 +1,13 @@
+.content{
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+}
+
 .profileContainer{
     display: flex;
-    flex-direction: row;
     justify-content: center;
     flex-wrap: wrap;
-    padding: 3%;
-    width: 140%;
   }
   .card-user-profile {
     position: relative;
@@ -20,8 +23,9 @@
         -ms-flex-direction: column;
             flex-direction: column;
     /* max-width: 40%; */
-    width: 40%;
+    width: 25%;
     border: 0;
+    margin-top: 5%;
     border-radius: 10%;
     background: #2B2D42;
     overflow: hidden;
@@ -54,7 +58,6 @@
     display: flex;
     justify-content: center;
     width: 100%;
-    height: 50%;
     padding:3%;
   }
   .card-user-profile-avatar img {
@@ -152,21 +155,22 @@
   }
 
   .contactPic {
-    height: auto;
-    width:50%;
-    border-radius: 10px;
+    height: 20%;
+    width:20%;
 }
 .contactUs{
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: center;
     background-color: #2B2D42;
+    color: #F9CF00;
     border-radius: 20px;
     padding:5px;
     width:90%;
     height: 50%;
     box-shadow: 2px 2px 7px 1px #000000;
     margin: auto;
+    margin-bottom: 3%;
 
 }
 .email {
