@@ -32,6 +32,9 @@
                     <div class="card-profile-stats-intro-content">
                         <h6> This Trip Was Created By</h6>
                         <h6><%=tripCreator.first_name %> <%=tripCreator.last_name %></h6>
+                        <% if(user.id == tripCreator.id){ %>
+                            <a href="/users/tripEdit/<%=tripData.id%>/"><button type='submit'  class="btn btn-primary" >Edit This Trip</button></a>
+                            <% } %>
                     </div> <!-- /.card-profile-stats-intro-content -->
                 </div> <!-- /.card-profile-stats-intro -->
                 <hr />

@@ -1,0 +1,82 @@
+<% include head %>
+<% include usersNavbar %>
+
+<body>
+<div class="container-fluid mt-5 mb-5">
+    <div class="row">
+        <div class="col col-12">
+            <form action="/users/tripEdit/<%=tripId%>/" method="post" enctype="multipart/form-data" >
+                <section>
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-12 col-md-8 col-lg-8 col-xl-6">
+                                <div class="row">
+                                    <div class="col text-center">
+                                        <h1>Create a Trip</h1>
+                                        <p class="text-h3">Create a TRVLR below to get TRVLing! </p>
+                                    </div>
+                                </div>
+                                <div class="row align-items-center">
+                                    <div class="col mt-4">
+                                        <input type="text" name="name" class="form-control"
+                                            placeholder="Name (give your trip a name!)">
+                                    </div>
+                                </div>
+                                <div class="row align-items-center mt-4">
+                                    <div class="col mt-4">
+                                        <input type="email" name="trip_email" class="form-control" placeholder="Email"
+                                            required>
+                                    </div>
+                                </div>
+                                <div class="row align-items-center mt-4">
+                                    <div class="col mt-4">
+                                        <textarea class="form-control" name="description" aria-label="With textarea" placeholder="Trip Description"></textarea>
+                                    </div>
+                                </div>
+                                <div class="row align-items-center mt-4">
+                                    <div class="col mt-4">
+                                        <input type="text" name="country" class="form-control"
+                                            placeholder="Destination Country" required>
+                                    </div>
+                                </div>
+                                <div class="row align-items-center mt-4">
+                                    <div class="col mt-4">
+                                        <input type="text" name="city" class="form-control"
+                                            placeholder="Destination City" required>
+                                    </div>
+                                </div>
+                                <div class="row align-items-center mt-4">
+                                    <div class="col mt-4">
+                                        <input onfocus="(this.type='date')" name="start_date"
+                                            class="form-control" placeholder="Departure Date" required>
+                                    </div>
+                                </div>
+                                <div class="row align-items-center mt-4">
+                                    <div class="col mt-4">
+                                        <input onfocus="(this.type='date')" name="end_date" class="form-control"
+                                            placeholder="Return Date" required>
+                                    </div>
+                                    
+                                </div>
+
+                                <div class="custom-file mt-5">
+                                    <input type="file" class="custom-file-input form-control" id="inputGroupFile01" name="trip_img" aria-describedby="inputGroupFileAddon01" placeholder="Trip Picture">
+                                    <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                                </div>
+                                
+                        
+                                <div class="row justify-content-center mt-4">
+                                    <input type="submit" class="btn btn-primary mt-4" />
+                                </div>
+                               
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </form>
+        </div>
+    </div>
+</div>
+
+<% include footer %>    
+</body>
