@@ -1,7 +1,9 @@
 <% include head %>
 <body>
     <% include usersNavbar %>
-    <div class='col-12 col-md-8 content'>
+    <div class="row" style='display: flex; justify-content: space-around'>
+
+    <div class='col-11 col-lg-8 content'>
         <div class="col col-12 card">
             <div class="row">
                 <div class="col col-4 imageCity">
@@ -20,22 +22,21 @@
             </div>
         </div>       
     </div>
-    <div class="row">
-        <div class='col-12 col-lg-4 profileCard'>
+        <div class='col-11 col-md-4 col-lg-3 profileCard'>
             <div class="card-profile-stats">
                 <div class="card-profile-stats-intro">
                     <a class="card-profile-stats-intro-pic" href="../../users/userprofiles/<%= tripCreator.id %>">
                         <img class="card-profile-stats-intro-pic" src="<%= tripCreator.picture %>" alt="profile-image" />
                     </a>
                     <div class="card-profile-stats-intro-content">
-                        <h3> This Trip Was Created By</h3>
-                        <h3><%=tripCreator.first_name %> <%=tripCreator.last_name %></h3>
+                        <h6> This Trip Was Created By</h6>
+                        <h6><%=tripCreator.first_name %> <%=tripCreator.last_name %></h6>
                     </div> <!-- /.card-profile-stats-intro-content -->
                 </div> <!-- /.card-profile-stats-intro -->
                 <hr />
             </div> <!-- /.card-profile-stats -->
         </div>
-        <div class="col-12 col-lg-7 people-you-might-know">
+        <div class="col-11 col-lg-12 col-md-7 people-you-might-know" style='max-width: 90%'>
                 <div class="add-people-header">
                 <h6 class="header-title">
                     People Attending This Trip
