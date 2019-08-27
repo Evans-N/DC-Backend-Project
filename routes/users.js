@@ -123,7 +123,7 @@ router.post('/tripCreateProcess', upload.single("trip_img"), (req,res,next) => {
   INSERT INTO trips
     (name, city, country, start_date, end_date, creator_id, description, picture)
   VALUES
-    ($1,$2,$3,$4,$5,$6,$7)
+    ($1,$2,$3,$4,$5,$6,$7, $8)
     returning id
   `
   console.log(createTripQuery)
