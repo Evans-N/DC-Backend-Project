@@ -2,7 +2,7 @@
 # TRVLR
 :jp: :us: :it: :uk: :es: :gb: :fr: :de: :cn:
 
-##DC-Backend-Project
+## DC-Backend-Project
 
 ### Created by: Ian Miller, Nathan Evans, and Anthony Pellingra
 ---
