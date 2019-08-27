@@ -13,7 +13,9 @@
                 <div class="col col-8 blurb">
                     <h4 class="separator-left"><%= tripData.name %></h4>
                     <p><%= tripData.description %></p>
-                    <a href="/users/trips/<%=tripData.id%>" class="btn btn-primary">Go To Trip</a>
+                    <% if(user.id !== tripCreator.id && !isAttending){ %>
+                    <form action="/users/tripJoin/<%= tripData.id %>" method="post"><button type='submit'  class="btn btn-primary" >Join This Trip</button></form>
+                    <% } %>
                 </div>
             </div>
         </div>       
