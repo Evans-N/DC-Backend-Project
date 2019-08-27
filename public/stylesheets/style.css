@@ -573,6 +573,7 @@ justify-content: space-evenly;
 
 .userGeneral{
   display: flex;
+  flex-wrap: wrap;
 }
 .carousel-item{
   margin: auto;
