@@ -17,7 +17,7 @@ create table trips (
     end_date DATE not null,
     creator_id INTEGER REFERENCES users(id),
     description VARCHAR(1000),
-    picture varchar(250)
+    picture varchar
 );
 
 create table comments (
