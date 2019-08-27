@@ -33,7 +33,8 @@ router.get('/', function(req, res, next) {
 router.get('/landing', (req,res,next) => {
   const getTrips = `
   SELECT * from trips
-  LIMIT 10`;
+  order by id desc
+  LIMIT 5`;
   const genTrips = db.any(getTrips);
   console.log('starting');
   genTrips.then((results)=> {
@@ -50,10 +51,14 @@ router.get('/landing', (req,res,next) => {
 
 router.get('/myTrips', (req,res,next) => {
   const getMyTrips = `
-  SELECT * FROM trips
-  WHERE creator_id = $1
-  LIMIT 4;
-  `
+  select trips.name, trips.city, trips.country, trips.start_date, trips.end_date, trips.description, trips.id, trips.picture
+  from trips, users, attendance
+  where trips.creator_id = users.id and users.id = $1
+  or trips.id = attendance.trip_id and attendance.user_id = users.id and users.id = $1
+  group by trips.name, trips.city, trips.country, trips.start_date, trips.end_date, trips.description, trips.id, trips.picture
+  order by trips.end_date desc
+  limit 3;`
+
   db.any(getMyTrips, [req.session.userObject.id]).then((results) => {
     res.render('myTrips', {
       userTrips: results
@@ -86,6 +91,7 @@ router.post('/tripCreateProcess', upload.single("trip_img"), (req,res,next) => {
   fs.rename(req.file.path, newPath, (err)=>{
     if(err) throw error;
   })
+  const picture = `/images/userImages/${req.file.originalname}`
   const name = req.body.name;
   const email = req.body.email;
   const city = req.body.city;
@@ -100,25 +106,21 @@ router.post('/tripCreateProcess', upload.single("trip_img"), (req,res,next) => {
   function createTrip(){
   const createTripQuery = `
   INSERT INTO trips
-    (name, city, country, start_date, end_date, creator_id, description)
+    (name, city, country, start_date, end_date, creator_id, description, picture)
   VALUES
-    ($1,$2,$3,$4,$5,$6,$7)
+    ($1,$2,$3,$4,$5,$6,$7, $8)
     returning id
   `
   console.log(createTripQuery)
-  db.one(createTripQuery,[name, city, country, start_date, end_date, creator_id, description])
+  db.one(createTripQuery,[name, city, country, start_date, end_date, creator_id, description, picture])
   .then((resp)=>{
         res.redirect('/users/myProfile')
       })
   }
 });
 
-router.get('/myTrips', (req,res,next) => {
-  res.render('myTrips');  
-  //
-});
-
 router.get('/trips/:tripId', (req, res, next) => {
+  let user = req.session.userObject
   let tripId = parseInt(req.params.tripId)
   let tripDataQuery = `
     select *
@@ -143,10 +145,13 @@ router.get('/trips/:tripId', (req, res, next) => {
       tripCreator.then((tC)=>{
         let tripCreatorData = tC //returns trip creator as object
         // res.json(tripCreatorData)
+        const isAttending = !!tripAttendanceData.find(attendee => attendee.id === user.id)
         res.render('tripGeneral', {
+          isAttending: isAttending,
           tripData: tripDataData,
           tripAttendance: tripAttendanceData,
-          tripCreator: tripCreatorData
+          tripCreator: tripCreatorData,
+          user: user
         })
       })
     })
@@ -160,11 +165,11 @@ router.get('/userProfiles/:userId', (req,res,next) => {
     from users
     where id = $1`
   let userTripsQuery = `
-    select trips.name, trips.city, trips.country, trips.start_date, trips.end_date, trips.description, trips.id 
+    select trips.name, trips.city, trips.country, trips.start_date, trips.end_date, trips.description, trips.id, trips.picture
     from trips, users, attendance
     where trips.creator_id = users.id and users.id = $1
     or trips.id = attendance.trip_id and attendance.user_id = users.id and users.id = $1
-    group by trips.name, trips.city, trips.country, trips.start_date, trips.end_date, trips.description, trips.id
+    group by trips.name, trips.city, trips.country, trips.start_date, trips.end_date, trips.description, trips.id, trips.picture
     order by trips.end_date desc;`
     let userTripsCreatedQuery = `
     select count(trips.name) 
@@ -217,12 +222,16 @@ router.get('/myProfile', (req,res,next) => {
     select *
     from users
     where id = $1`
+  let creatorTripsQuery = `
+  select trips.name, trips.city, trips.country, trips.start_date, trips.end_date, trips.description, trips.id, trips.picture
+    from trips, users
+    where trips.creator_id = users.id and users.id = $1`
   let userTripsQuery = `
-    select trips.name, trips.city, trips.country, trips.start_date, trips.end_date, trips.description, trips.id 
+    select trips.name, trips.city, trips.country, trips.start_date, trips.end_date, trips.description, trips.id, trips.picture
     from trips, users, attendance
     where trips.creator_id = users.id and users.id = $1
     or trips.id = attendance.trip_id and attendance.user_id = users.id and users.id = $1
-    group by trips.name, trips.city, trips.country, trips.start_date, trips.end_date, trips.description, trips.id
+    group by trips.name, trips.city, trips.country, trips.start_date, trips.end_date, trips.description, trips.id, trips.picture
     order by trips.end_date desc;`
     let userTripsCreatedQuery = `
     select count(trips.name) 
@@ -236,32 +245,43 @@ router.get('/myProfile', (req,res,next) => {
   let userTrips = db.any(userTripsQuery, [userId])
   let userTripsCreated= db.any(userTripsCreatedQuery, [userId])
   let userTripsAttended= db.any(userTripsAttendedQuery, [userId])
+  let creatorTrips = db.any(creatorTripsQuery, [userId])
   userData.then((udt) => {
     let userDataData = udt[0]
-    userTrips.then((utd)=>{
-      let userTripsData = utd
-      userTripsCreated.then((utcd)=>{
-        let userTripsCreatedData = utcd[0]
-        userTripsAttended.then((utad)=>{
-          let userTripsAttendedData = utad[0]
-          // res.json(userTripsData)
-          if (userTripsData[0]){
-            res.json('worked')
+    userTripsCreated.then((utcd)=>{
+      let userTripsCreatedData = utcd[0]
+      userTripsAttended.then((utad)=>{
+        let userTripsAttendedData = utad[0]
+        if (userTripsCreatedData.count != 0 && userTripsAttendedData.count == 0){
+          creatorTrips.then((ct) => {
+            let creatorTripsData = ct
             res.render('userGeneral', {
               userData: userDataData,
-              userTrips: userTripsData,
+              userTrips: creatorTripsData,
               userTripsCreated: userTripsCreatedData,
               userTripsAttended: userTripsAttendedData
             })
-     
-        } else {
-            res.render('newProfile', {
-            userData: userDataData,
-            userTripsCreated: userTripsCreatedData,
-            userTripsAttended: userTripsAttendedData
           })
-          }
-        })
+        } else {
+          userTrips.then((utd)=>{
+            let userTripsData = utd
+          // res.json(userTripsData)
+            if (userTripsCreatedData.count == 0 && userTripsAttendedData.count == 0){
+              res.render('newProfile', {
+                userData: userDataData,
+                userTripsCreated: userTripsCreatedData,
+                userTripsAttended: userTripsAttendedData
+              })
+            } else {
+                res.render('userGeneral', {
+                  userData: userDataData,
+                  userTrips: userTripsData,
+                  userTripsCreated: userTripsCreatedData,
+                  userTripsAttended: userTripsAttendedData
+                })
+            }
+          })
+        }
       })
     })
 
@@ -311,4 +331,25 @@ router.post('/updateProcess', upload.single("profile_pic"), (req,res,next) => {
   }//end of updateUser function
 })//end of updateProcess
 
+<<<<<<< HEAD
+=======
+router.post('/tripJoin/:tripId', (req,res,next) => {
+  const tripId = req.params.tripId;
+  const userId = req.session.userObject.id
+  const createAttendanceQuery = `
+  INSERT INTO attendance
+    (user_id, trip_id)
+  VALUES
+    ($1,$2)
+    returning id;
+  `
+  let createAttendance = db.one(createAttendanceQuery,[userId, tripId])
+
+  createAttendance.then(() => {
+    res.redirect('/users/mytrips')
+  })
+});
+
+
+>>>>>>> c9cce8988d664751cadf2ff74614ac1eb95e6216
 module.exports = router;

@@ -6,14 +6,16 @@
             <div class="row">
                 <div class="col col-4 imageCity">
                     <div class="trip-image">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/President_Barack_Obama.jpg/480px-President_Barack_Obama.jpg">
+                        <img src="<%= tripData.picture %>">
                     </div>
                     <h5><%= tripData.city %>, <%= tripData.country %></h5>
                 </div>
                 <div class="col col-8 blurb">
                     <h4 class="separator-left"><%= tripData.name %></h4>
                     <p><%= tripData.description %></p>
-                    <a href="/users/trips/<%=tripData.id%>" class="btn btn-primary">Go To Trip</a>
+                    <% if(user.id !== tripCreator.id && !isAttending){ %>
+                    <form action="/users/tripJoin/<%= tripData.id %>" method="post"><button type='submit'  class="btn btn-primary" >Join This Trip</button></form>
+                    <% } %>
                 </div>
             </div>
         </div>       
