@@ -4,14 +4,14 @@
 
 ##DC-Backend-Project
 
-###Created by: Ian Miller, Nathan Evans, and Anthony Pellingra
+### Created by: Ian Miller, Nathan Evans, and Anthony Pellingra
 ---
   
-####**Project Overview**
+#### Project Overview
 
 *A social travel app to make planning trips with friends easier. We store user data after registration and give the user a session cookie. Afterwards they can customize a trip they would like to go on, and allow other users to attend the new trip.*
 
-####**Our Project Goals- Backend**
+#### Our Project Goals- Backend
 
 - [x] Allow our site to create users.
 - [x] Allow each user to create a trip.
@@ -21,27 +21,27 @@
 - [x] Site implements authentication and validation.
 
 
-####**Our Site Features- Frontend**
+#### Our Site Features- Frontend
 
 * Users have a timeline feature to show trips they have attended/created.
 * Set a carousel on the landing page to show recently made trips by other users. 
 * Added hover features to navbar, about us icons, and footer
 
-####**Database Formatting**
+#### Database Formatting
 
-#####Users Table
+##### Users Table
 
 | First Name | Last Name | Email | Phone | Password | Picture |
 |:----------:|:--------:|:----:|:----:|:-------:|:------:|
 | Users | Name | username@me.com | 1234567890 | b-crypt | File/Path/to/profile/pic/storage|
 
-#####Trips Table
+##### Trips Table
 
 | Name of Trip | City| Country | Start Date | End Date | Users (id) | Trip Description | Picture |
 |:------------:|:---:|:-------:|:----------:|:--------:|:----:|:----------------:|:-------:|
 | Traveling Abroad | Paris | France | 08-23-2019 | 09-06-2019| 1 | Going to the Eiffel Tower| File/path/to trip/image/storage|
 
-#####Attendees Table
+##### Attendees Table
 
 *This table controls our many to many relationship by storing which user(id) is attending which trip(id).*
 
