@@ -283,4 +283,47 @@ router.get('/myProfile', (req,res,next) => {
   })
 });
 
+router.post('/updateProcess', upload.single("profile_pic"), (req,res,next) => {
+  const newPath = `public/images/profilePics/${req.file.originalname}`;
+  fs.rename(req.file.path, newPath, (err)=>{
+    if(err) throw error;
+  })
+  const first_name = req.body.first_name;
+  const last_name = req.body.last_name;
+  const email = req.body.email;
+  const phone = req.body.phone_number;
+  const password = req.body.password;
+
+  const checkUserExistsQuery = `
+  SELECT * FROM users WHERE email=$1
+  `
+  db.any(checkUserExistsQuery,[email])
+    .then((results) => {
+      if(results.length < 0){
+        res.redirect('/?msg=userdoesntexist')
+      } else {
+        updateUser()
+      }
+    })
+
+  function updateUser(){
+    const updateUserQuery = `
+    UPDATE users
+    SET 
+      $1 = first_name
+      $2 = last_name
+      $3 = email
+      $4 = phone
+      $5 = password
+      $6 = newPath
+      returning id
+    `
+    const hash = bcrypt.hashSync(password,10)
+    db.one(updateUserQuery,[first_name,last_name,email,phone,hash,newPath])
+    .then((resp)=>{
+      res.redirect('/myProfile')
+    })
+  }//end of updateUser function
+})//end of updateProcess
+
 module.exports = router;
