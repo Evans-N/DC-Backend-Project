@@ -3,9 +3,9 @@
 <% include usersNavbar %>
 <div class="container-fluid">
     <div class='row mainPage'>
-        <div id="carouselExampleControls" class="carousel slide" data-ride="carousel" style="width: 33rem; display: flex; flex-wrap: nowrap;">
+        <div id="carouselExampleControls" class="carousel slide col col-12 col-md-6" data-ride="carousel" style="width: 33rem; display: flex; flex-wrap: nowrap;">
                 <div class="carousel-inner">
-                        <div class="card carousel-item active mb-4" style="width: 33rem">
+                        <div class="card carousel-item active mb-4" style="width: 100%">
                                 <img src="/images/userImages/EiffelTower.jpg" class="img-thumbnail card-img-top" alt="Trip Image">
                                 <div class="card-body">
                                     <h5 class="card-title">Check Out Awesome Trips</h5>
@@ -13,12 +13,12 @@
                                 </div>
                             </div>
                         <% tripInfo.forEach((trip, i) => { %>
-                        <div class="card carousel-item mb-4" style="width: 33rem">
+                        <div class="card carousel-item mb-4" style="width: 100%">
                             <img src="<%= trip.picture%> " class="img-thumbnail card-img-top" alt="Trip Image">
                             <div class="card-body">
                                 <h5 class="card-title"><%= trip.name %></h5>
                                 <p class="card-text"><%= trip.description %></p>
-                                <a href="/users/trips/<%=trip.id%>" class="btn btn-primary">Check It Out</a>
+                                <a href="/users/trips/<%=trip.id%>" class="btn btn-primary" style="z-index: 2; position: relative;">Check It Out</a>
                             </div>
                         </div>
                     <% }) %>       

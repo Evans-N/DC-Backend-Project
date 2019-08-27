@@ -6,8 +6,8 @@
     <div class='container'>
             <div class='row' style="display: flex">
                 <% userTrips.forEach((trip, i) => { %>
-                    <div class="card mb-4 col-12 col-md-5 col-lg-3">
-                        <img src="<%= trip.picture %>" class="img-thumbnail card-img-top" alt="Trip Image">
+                    <div class="card mb-4 col-11 col-md-5 col-lg-3">
+                        <img src="<%= trip.picture %>" class="img-thumbnail card-img-top" alt="Trip Image" style='width: 100%'>
                         <div class="card-body">
                             <h5 class="card-title"><%=trip.name%></h5>
                             <p class="card-text"><%=trip.description%></p>
