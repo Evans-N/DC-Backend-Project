@@ -2,8 +2,8 @@
 <% include usersNavbar %>
 
 <body style="background-color: #D9D9D9">
-    <div class="userGeneral">
-        <div class='col-12 col-lg-4 profileCard'>
+    <div class="container extra-top-margin col col-12 ">
+        <div class='col-4 col-lg-4 profileCard'>
                 <div class="card-profile-stats">
                     <div class="card-profile-stats-intro">
                         <img class="card-profile-stats-intro-pic" src="<%= userData.picture %>" alt="profile-image" />
@@ -32,7 +32,7 @@
             </div>
         
         
-    <div class='col-12 col-lg-7 profileTimeline'>
+    <div class='col-4 col-lg-8 profileTimeline'>
         <div class="timeline" style="color: #2B2D42">
         <% userTrips.forEach((trip, i) => { %>
             <% if(i % 2 === 0) { %>
