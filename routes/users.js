@@ -329,10 +329,7 @@ router.post('/updateProcess', upload.single("profile_pic"), (req,res,next) => {
     })
   }//end of updateUser function
 })//end of updateProcess
-<<<<<<< HEAD
-=======
 
->>>>>>> 014b5eef3bb2e58069ab733309892d6fbc427bb5
 router.post('/tripJoin/:tripId', (req,res,next) => {
   const tripId = req.params.tripId;
   const userId = req.session.userObject.id
@@ -349,9 +346,5 @@ router.post('/tripJoin/:tripId', (req,res,next) => {
     res.redirect('/users/mytrips')
   })
 });
-<<<<<<< HEAD
-=======
-
->>>>>>> 014b5eef3bb2e58069ab733309892d6fbc427bb5
 
 module.exports = router;
