@@ -203,7 +203,7 @@
 }
 
 .timeline::before {
-  background: #fefefe;
+  background: #F19F4D;
   content: '';
   height: 100%;
   left: 50%;
@@ -264,11 +264,11 @@
   transition: all 0.25s ease-in;
   width: 45%;
   background: transparent;
-  color: white;
+  color: #2B2D42;
 }
 
 .timeline .timeline-item .timeline-content p {
-  color: #fefefe;
+  color: #2B2D42;
 }
 
 .timeline .timeline-item .timeline-content p {
@@ -523,12 +523,6 @@ justify-content: space-evenly;
   color: #D9D9D9;
 }
 
-.navbar-colors a{
-  color: #D9D9D9;
-}
-.navbar-toggler-icon{
-  color: #D9D9D9;
-}
 .menu-hover-lines {
   text-align: center;
   text-transform: uppercase;
@@ -600,9 +594,32 @@ justify-content: space-evenly;
   justify-content: space-around
 }
 body{
-  margin-top: 50px;
+  margin-top: 56px;
   width: 100%;
+  font-family: 'Raleway', sans-serif;
 }
+
+
+/* editProfile */
+.update-profile {
+  margin-top: 5rem;
+}
+
+.editButton a{
+  color: white;
+}
+
+.profileCard{
+  margin-top: 15px;
+}
+.card-profile-stats-intro-pic{
+  height: 200px;
+  width:200px;
+}
+.navbar-toggler{
+  background-image: url("../images/PinClipart.com_saucepan-clipart_2005937.png")
+}
+
 /* START OF FOOTER CSS */
 
 /* END OF FOOTER CSS */
