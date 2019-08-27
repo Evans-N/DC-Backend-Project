@@ -15,16 +15,19 @@
 </head>
 <body>
 <% include usersNavbar %>
-        <div class="content">
-          <section class="profileContainer">
+        <div class="content row">
+          <section class="profileContainer row" style='display: flex'>
     
-            <div class="card-user-profile">
-              <img class="card-user-profile-img" src="../HTMLimages/Logo.png" alt="Boredom Killer Logo"/>
+            <div class="card-user-profile col-12 col-lg-4">
               <div class="card-user-profile-content card-section">
                 <div class="card-user-profile-avatar">
                     <div class="imageContain">
-                  <img src="../HTMLimages/Anthony.jpeg" alt="picture of a Developer" />
+                  <img src="../images/Anthony.jpeg" alt="picture of a Developer" />
                   </div>
+                </div>
+                <div class="rounded-social-buttons">
+                  <a class="social-button github" href="https://github.com/APellingra"></a>
+                  <a class="social-button linkedin" href="#"></a>
                 </div><hr>
                 <div class="wordsContain">
                   <h2 class="card-user-profile-name">Anthony Pellingra</h2>
@@ -32,72 +35,53 @@
                   <p class="card-user-profile-info">Anthony constructed the trivia game and designed stylistic elements of the website including: the logo, nav bar, and game tiles.</p>
                 </div><hr>
               </div>
-              <div class="rounded-social-buttons">
-                  <a class="social-button github" href="https://github.com/APellingra"></a>
-                </div>
+
             </div>
           
-            <div class="card-user-profile">
-              <img class="card-user-profile-img" src="../HTMLimages/Logo.png" alt="Boredom Killer Logo"/>
+            <div class="card-user-profile col-12 col-lg-4">
               <div class="card-user-profile-content card-section">
                 <div class="card-user-profile-avatar">
                   <div class="imageContain">
-                  <img src="../HTMLimages/KevinProfilePic.jpeg" alt="picture of a Developer" />
+                  <img src="../images/NathanProfilePic.png" alt="picture of a Developer" />
                 </div>
-                </div><hr>
+                </div>
+                <div class="rounded-social-buttons">
+                  <a class="social-button github" href="https://github.com/kreid06"></a>
+                  <a class="social-button linkedin" href="#"></a>
+                </div>
+              <hr>
                 <div class="wordsContain">
-                  <h2 class="card-user-profile-name">Ian Miller</h2>
+                  <h2 class="card-user-profile-name">Nathan Evans</h2>
                   <h3 class="card-user-profile-status">Web Developer</h3>
                   <p class="card-user-profile-info">Kevin created the timer function and enhanced the stickman modal, along with working extensively on the responsiveness of the mobile webpage.</p>
                   </div><hr>
               </div>
               
-              <div class="rounded-social-buttons">
-                  <a class="social-button github" href="https://github.com/kreid06"></a>
-                </div>
+
             </div>
           
-            <div class="card-user-profile">
-              <img class="card-user-profile-img" src="../HTMLimages/Logo.png" alt="Boredom Killer Logo"/>
+            <div class="card-user-profile col-12 col-lg-3">
               <div class="card-user-profile-content card-section">
                 <div class="card-user-profile-avatar">
                     <div class="imageContain">
-                  <img src="../HTMLimages/NathanProfilePic.png" alt="picture of a Developer" />
+                  <img src="../images/1447284698-gettyimages-457029438.jpg" alt="picture of a Developer" />
                   </div>
-                </div><hr>
+                </div>
+                <div class="rounded-social-buttons">
+                    <a class="social-button github" href="https://github.com/Evans-N"></a>
+                    <a class="social-button linkedin" href="#"></a>
+                  </div><hr>
                 <div class="wordsContain">
-                  <h2 class="card-user-profile-name">Nathan Evans</h2>
+                  <h2 class="card-user-profile-name">Ian Miller</h2>
                   <h3 class="card-user-profile-status">Web Developer</h3>
                   <p class="card-user-profile-info">Nathan integrated and designed the Inspiration corner. He contributed on creating different elements of the website including this page your're on right now!</p>
                 </div><hr>
               </div>
-                    
-              <div class="rounded-social-buttons">
-                  <a class="social-button github" href="https://github.com/Evans-N"></a>
-                </div>
             </div>
-            <div class="card-user-profile">
-                <img class="card-user-profile-img" src="../HTMLimages/Logo.png" alt="Boredom Killer Logo"/>
-                <div class="card-user-profile-content card-section">
-                    <div class="card-user-profile-avatar">
-                        <div class="imageContain">
-                    <img src="../HTMLimages/NathanProfilePic.png" alt="picture of a Developer" />
-                    </div>
-                    </div><hr>
-                    <div class="wordsContain">
-                    <h2 class="card-user-profile-name">Daniel Farlow</h2>
-                    <h3 class="card-user-profile-status">Web Developer</h3>
-                    <p class="card-user-profile-info">Nathan integrated and designed the Inspiration corner. He contributed on creating different elements of the website including this page your're on right now!</p>
-                    </div><hr>
-                </div>
-                          
-                <div class="rounded-social-buttons">
-                    <a class="social-button github" href="https://github.com/Evans-N"></a>
-                    </div>
-                </div>
+            
           </section>
-          <section class="contactUs">
-                <img class='contactPic' src="../HTMLimages/groupShot.jpg">  
+          <section class="contactUs col-12">
+                <img class='contactPic' src="../images/trvlrlogoblue.png">  
                 <div class="email"><hr>
                     <h2>Have questions, concerns, or feedback? Let us know!</h2>
                     <form class="contactUsform">What would you like to contact us about?
@@ -110,7 +94,6 @@
                             </select>
                             <input type="button" value="Go" onclick="goToNewPage()"/>
                           </form>
-                    <img class='emailPic'src="../HTMLimages/email.png"></a>
                 </div>
             </section>
         </div>
