@@ -331,8 +331,6 @@ router.post('/updateProcess', upload.single("profile_pic"), (req,res,next) => {
   }//end of updateUser function
 })//end of updateProcess
 
-<<<<<<< HEAD
-=======
 router.post('/tripJoin/:tripId', (req,res,next) => {
   const tripId = req.params.tripId;
   const userId = req.session.userObject.id
@@ -351,5 +349,4 @@ router.post('/tripJoin/:tripId', (req,res,next) => {
 });
 
 
->>>>>>> c9cce8988d664751cadf2ff74614ac1eb95e6216
 module.exports = router;

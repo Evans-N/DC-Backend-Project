@@ -1,0 +1,19 @@
+.hero-image {
+    background-image: url("../images/cliffside.jpg");
+    height: 100%;
+    width: 100%;
+    /* Position and center the image to scale nicely on all screens */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: white;
+    }
+
+
+.container {
+    margin-top: 2rem;
+}
+
+.container-fluid {
+    margin-top: 5rem;
+}

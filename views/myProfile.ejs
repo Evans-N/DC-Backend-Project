@@ -1,8 +1,9 @@
 <% include head %>
 <body style="background-color: #D9D9D9">
         <% include usersNavbar %>
+    <div class="container">
     <div class="userGeneral">
-        <div class='col-12 col-lg-4 profileCard'>
+        <div class='col-12 col-lg-4 card'>
                 <div class="card-profile-stats">
                     <div class="card-profile-stats-intro">
                         <img class="card-profile-stats-intro-pic" src="<%= userData.picture %>" alt="profile-image" />
@@ -57,6 +58,7 @@
         <% }) %>
         </div>        
     </div>
+</div>
 </div>
 </body>
 <% include footer %>
