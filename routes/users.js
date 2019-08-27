@@ -363,5 +363,38 @@ router.post('/tripJoin/:tripId', (req,res,next) => {
   })
 });
 
+router.get('/tripEdit/:tripId', (req,res,next) => {
+  res.render('tripEdit', {
+    tripId: req.params.tripId
+  });
+});
+
+router.post('/tripEdit/:tripId/', upload.single("trip_img"), (req,res,next) => {
+  const newPath = `public/images/userImages/${req.file.originalname}`;
+  fs.rename(req.file.path, newPath, (err)=>{
+    if(err) throw error;
+  })
+  const tripId = req.params.tripId
+  console.log(`hello ${tripId}`);
+  const picture = `/images/userImages/${req.file.originalname}`
+  const name = req.body.name;
+  const email = req.body.email;
+  const city = req.body.city;
+  const country = req.body.country;
+  const start_date = req.body.start_date;
+  const end_date = req.body.end_date;
+  const creator_id = req.session.userObject.id;
+  const description = req.body.description;  
+  const editTripQuery = `
+  Update trips
+  Set name = $1, city = $2, country = $3, start_date =$4, end_date =$5, creator_id = $6, description = $7, picture = $8
+  Where id = $9
+    returning id
+  `
+  const editTrip = db.one(editTripQuery,[name, city, country, start_date, end_date, creator_id, description, picture, tripId ])
+  editTrip.then((resp)=>{
+        res.redirect('/users/myProfile')
+      })
+});
 
 module.exports = router;
