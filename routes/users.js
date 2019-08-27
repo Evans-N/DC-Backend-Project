@@ -106,6 +106,7 @@ router.post('/tripCreateProcess', upload.single("trip_img"), (req,res,next) => {
   fs.rename(req.file.path, newPath, (err)=>{
     if(err) throw error;
   })
+  const picture = `/images/userImages/${req.file.originalname}`
   const name = req.body.name;
   const email = req.body.email;
   const city = req.body.city;
@@ -120,13 +121,13 @@ router.post('/tripCreateProcess', upload.single("trip_img"), (req,res,next) => {
   function createTrip(){
   const createTripQuery = `
   INSERT INTO trips
-    (name, city, country, start_date, end_date, creator_id, description)
+    (name, city, country, start_date, end_date, creator_id, description, picture)
   VALUES
-    ($1,$2,$3,$4,$5,$6,$7)
+    ($1,$2,$3,$4,$5,$6,$7, $8)
     returning id
   `
   console.log(createTripQuery)
-  db.one(createTripQuery,[name, city, country, start_date, end_date, creator_id, description])
+  db.one(createTripQuery,[name, city, country, start_date, end_date, creator_id, description, picture])
   .then((resp)=>{
         res.redirect('/users/myProfile')
       })

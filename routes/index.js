@@ -59,6 +59,8 @@ router.post('/registerProcess', upload.single("profile_pic"), (req,res,next) => 
   fs.rename(req.file.path, newPath, (err)=>{
     if(err) throw error;
   })
+  //makes picture able to be called in ejs
+  const picture = `/images/profilePics/${req.file.originalname}`
   const first_name = req.body.first_name;
   const last_name = req.body.last_name;
   const email = req.body.email;
@@ -87,7 +89,7 @@ router.post('/registerProcess', upload.single("profile_pic"), (req,res,next) => 
       returning id
     `
     const hash = bcrypt.hashSync(password,10)
-    db.one(insertUserQuery,[first_name,last_name,email,phone,hash,newPath])
+    db.one(insertUserQuery,[first_name,last_name,email,phone,hash,picture])
     .then((resp)=>{
       res.redirect('/login')
       // res.redirect('/login?msg=useradded')

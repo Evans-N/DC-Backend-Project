@@ -347,11 +347,10 @@ color: white;
 justify-content: space-evenly;
 }
 
-.divider{
+.divider hr{
   width: 8%;
   height: 100%;
   color:white;
-  padding:10%;
 }
 /* THIS IS THE END OF INDEX CSS */
 
@@ -584,6 +583,7 @@ justify-content: space-evenly;
 }
 body{
   margin-top: 5%;
+  width: 100%;
 }
 /* START OF FOOTER CSS */
 
