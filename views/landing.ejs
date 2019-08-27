@@ -6,7 +6,7 @@
         <div id="carouselExampleControls" class="carousel slide" data-ride="carousel" style="width: 33rem; display: flex; flex-wrap: nowrap;">
                 <div class="carousel-inner">
                         <div class="card carousel-item active mb-4" style="width: 33rem">
-                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/President_Barack_Obama.jpg/480px-President_Barack_Obama.jpg" class="img-thumbnail card-img-top" alt="Trip Image">
+                                <img src="https://en.wikipedia.org/wiki/Eiffel_Tower#/media/File:Tour_Eiffel_Wikimedia_Commons_(cropped).jpg" class="img-thumbnail card-img-top" alt="Trip Image">
                                 <div class="card-body">
                                     <h5 class="card-title">Check Out Awesome Trips</h5>
                                     <p class="card-text">These are the most recent trips created by other Trvlrs</p>
@@ -14,7 +14,7 @@
                             </div>
                         <% tripInfo.forEach((trip, i) => { %>
                         <div class="card carousel-item mb-4" style="width: 33rem">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/President_Barack_Obama.jpg/480px-President_Barack_Obama.jpg" class="img-thumbnail card-img-top" alt="Trip Image">
+                            <img src="<%= trip.picture%> " class="img-thumbnail card-img-top" alt="Trip Image">
                             <div class="card-body">
                                 <h5 class="card-title"><%= trip.name %></h5>
                                 <p class="card-text"><%= trip.description %></p>
