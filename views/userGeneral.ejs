@@ -8,6 +8,11 @@
                         <img class="card-profile-stats-intro-pic" src="<%= userData.picture %>" alt="profile-image" />
                         <div class="card-profile-stats-intro-content">
                             <h3><%=userData.first_name %> <%=userData.last_name %></h3>
+                            <% if(myPage){ %>
+                                <div>
+                                <button type='submit' class="editButton btn btn-primary" ><a href="/users/editProfile">Edit Profile</a></button>
+                                </div>
+                           <% } %>
                             <p>Traveling since <%= userTrips.slice(-1)[0].start_date %></small></p>
                         </div> <!-- /.card-profile-stats-intro-content -->
                     </div> <!-- /.card-profile-stats-intro -->

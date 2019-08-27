@@ -274,7 +274,8 @@ router.get('/myProfile', (req,res,next) => {
               userData: userDataData,
               userTrips: creatorTripsData,
               userTripsCreated: userTripsCreatedData,
-              userTripsAttended: userTripsAttendedData
+              userTripsAttended: userTripsAttendedData,
+              myPage: true
             })
           })
         } else {
@@ -283,16 +284,20 @@ router.get('/myProfile', (req,res,next) => {
           // res.json(userTripsData)
             if (userTripsCreatedData.count == 0 && userTripsAttendedData.count == 0){
               res.render('newProfile', {
+                userId: userId,
                 userData: userDataData,
                 userTripsCreated: userTripsCreatedData,
-                userTripsAttended: userTripsAttendedData
+                userTripsAttended: userTripsAttendedData,
+                myPage: true
               })
             } else {
                 res.render('userGeneral', {
+                  userId: userId,
                   userData: userDataData,
                   userTrips: userTripsData,
                   userTripsCreated: userTripsCreatedData,
-                  userTripsAttended: userTripsAttendedData
+                  userTripsAttended: userTripsAttendedData,
+                  myPage: true
                 })
             }
           })
@@ -301,6 +306,10 @@ router.get('/myProfile', (req,res,next) => {
     })
 
   })
+});
+
+router.get('/editProfile', (req,res,next) => {
+  res.render('editProfile')
 });
 
 router.post('/updateProcess', upload.single("profile_pic"), (req,res,next) => {
@@ -313,7 +322,7 @@ router.post('/updateProcess', upload.single("profile_pic"), (req,res,next) => {
   const email = req.body.email;
   const phone = req.body.phone_number;
   const password = req.body.password;
-
+  const picture = `/images/profilePics/${req.file.originalname}`
   const checkUserExistsQuery = `
   SELECT * FROM users WHERE email=$1
   `
@@ -330,18 +339,22 @@ router.post('/updateProcess', upload.single("profile_pic"), (req,res,next) => {
     const updateUserQuery = `
     UPDATE users
     SET 
-      $1 = first_name
-      $2 = last_name
-      $3 = email
-      $4 = phone
-      $5 = password
-      $6 = newPath
-      returning id
+      first_name = $1,
+      last_name = $2,
+      email = $3,
+      phone = $4,
+      password = $5,
+      picture = $6
+    WHERE id= $7
+      returning id  
     `
     const hash = bcrypt.hashSync(password,10)
-    db.one(updateUserQuery,[first_name,last_name,email,phone,hash,newPath])
+    console.log(hash)
+    db.one(updateUserQuery,[first_name,last_name,email,phone,hash,picture,req.session.userObject.id])
     .then((resp)=>{
-      res.redirect('/myProfile')
+      res.redirect('myProfile')
+    }).catch((err)=>{
+      res.json(err)
     })
   }//end of updateUser function
 })//end of updateProcess

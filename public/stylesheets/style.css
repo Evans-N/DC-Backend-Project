@@ -523,12 +523,6 @@ justify-content: space-evenly;
   color: #D9D9D9;
 }
 
-.navbar-colors a{
-  color: #D9D9D9;
-}
-.navbar-toggler-icon{
-  color: #D9D9D9;
-}
 .menu-hover-lines {
   text-align: center;
   text-transform: uppercase;
@@ -602,6 +596,16 @@ justify-content: space-evenly;
 body{
   margin-top: 56px;
   width: 100%;
+}
+
+
+/* editProfile */
+.update-profile {
+  margin-top: 5rem;
+}
+
+.editButton a{
+  color: white;
 }
 
 .profileCard{
