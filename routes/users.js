@@ -58,11 +58,11 @@ router.get('/landing', (req,res,next) => {
 
 router.get('/myTrips', (req,res,next) => {
   const getMyTrips = `
-  select trips.name, trips.city, trips.country, trips.start_date, trips.end_date, trips.description, trips.id 
+  select trips.name, trips.city, trips.country, trips.start_date, trips.end_date, trips.description, trips.id, trips.picture
   from trips, users, attendance
   where trips.creator_id = users.id and users.id = $1
   or trips.id = attendance.trip_id and attendance.user_id = users.id and users.id = $1
-  group by trips.name, trips.city, trips.country, trips.start_date, trips.end_date, trips.description, trips.id
+  group by trips.name, trips.city, trips.country, trips.start_date, trips.end_date, trips.description, trips.id, trips.picture
   order by trips.end_date desc
   limit 3;`
 
@@ -180,11 +180,11 @@ router.get('/userProfiles/:userId', (req,res,next) => {
     from users
     where id = $1`
   let userTripsQuery = `
-    select trips.name, trips.city, trips.country, trips.start_date, trips.end_date, trips.description, trips.id 
+    select trips.name, trips.city, trips.country, trips.start_date, trips.end_date, trips.description, trips.id, trips.picture
     from trips, users, attendance
     where trips.creator_id = users.id and users.id = $1
     or trips.id = attendance.trip_id and attendance.user_id = users.id and users.id = $1
-    group by trips.name, trips.city, trips.country, trips.start_date, trips.end_date, trips.description, trips.id
+    group by trips.name, trips.city, trips.country, trips.start_date, trips.end_date, trips.description, trips.id, trips.picture
     order by trips.end_date desc;`
     let userTripsCreatedQuery = `
     select count(trips.name) 
@@ -237,12 +237,16 @@ router.get('/myProfile', (req,res,next) => {
     select *
     from users
     where id = $1`
+  let creatorTripsQuery = `
+  select trips.name, trips.city, trips.country, trips.start_date, trips.end_date, trips.description, trips.id, trips.picture
+    from trips, users
+    where trips.creator_id = users.id and users.id = $1`
   let userTripsQuery = `
-    select trips.name, trips.city, trips.country, trips.start_date, trips.end_date, trips.description, trips.id 
+    select trips.name, trips.city, trips.country, trips.start_date, trips.end_date, trips.description, trips.id, trips.picture
     from trips, users, attendance
     where trips.creator_id = users.id and users.id = $1
     or trips.id = attendance.trip_id and attendance.user_id = users.id and users.id = $1
-    group by trips.name, trips.city, trips.country, trips.start_date, trips.end_date, trips.description, trips.id
+    group by trips.name, trips.city, trips.country, trips.start_date, trips.end_date, trips.description, trips.id, trips.picture
     order by trips.end_date desc;`
     let userTripsCreatedQuery = `
     select count(trips.name) 
@@ -256,31 +260,43 @@ router.get('/myProfile', (req,res,next) => {
   let userTrips = db.any(userTripsQuery, [userId])
   let userTripsCreated= db.any(userTripsCreatedQuery, [userId])
   let userTripsAttended= db.any(userTripsAttendedQuery, [userId])
+  let creatorTrips = db.any(creatorTripsQuery, [userId])
   userData.then((udt) => {
     let userDataData = udt[0]
-    userTrips.then((utd)=>{
-      let userTripsData = utd
-      userTripsCreated.then((utcd)=>{
-        let userTripsCreatedData = utcd[0]
-        userTripsAttended.then((utad)=>{
-          let userTripsAttendedData = utad[0]
-          // res.json(userTripsData)
-          if (userTripsData[0]){
+    userTripsCreated.then((utcd)=>{
+      let userTripsCreatedData = utcd[0]
+      userTripsAttended.then((utad)=>{
+        let userTripsAttendedData = utad[0]
+        if (userTripsCreatedData.count != 0 && userTripsAttendedData.count == 0){
+          creatorTrips.then((ct) => {
+            let creatorTripsData = ct
             res.render('userGeneral', {
               userData: userDataData,
-              userTrips: userTripsData,
+              userTrips: creatorTripsData,
               userTripsCreated: userTripsCreatedData,
               userTripsAttended: userTripsAttendedData
             })
-     
-        } else {
-            res.render('newProfile', {
-            userData: userDataData,
-            userTripsCreated: userTripsCreatedData,
-            userTripsAttended: userTripsAttendedData
           })
-          }
-        })
+        } else {
+          userTrips.then((utd)=>{
+            let userTripsData = utd
+          // res.json(userTripsData)
+            if (userTripsCreatedData.count == 0 && userTripsAttendedData.count == 0){
+              res.render('newProfile', {
+                userData: userDataData,
+                userTripsCreated: userTripsCreatedData,
+                userTripsAttended: userTripsAttendedData
+              })
+            } else {
+                res.render('userGeneral', {
+                  userData: userDataData,
+                  userTrips: userTripsData,
+                  userTripsCreated: userTripsCreatedData,
+                  userTripsAttended: userTripsAttendedData
+                })
+            }
+          })
+        }
       })
     })
 

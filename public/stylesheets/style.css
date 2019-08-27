@@ -79,9 +79,7 @@
 .imageCity{
   text-align: center;
 }
-.card{
-  margin: 2%;
-}
+
 .blurb{
   padding-right: 0px;
   padding-left: 0px;
@@ -372,9 +370,29 @@ justify-content: space-evenly;
   -webkit-box-shadow: 7px 4px 9px 2px rgba(0,0,0,0.83); 
   box-shadow: 7px 4px 9px 2px rgba(0,0,0,0.83);
   border-radius: 5%;
-  width: 115%;
+  width: 100%;
   margin-top: 20%;
   padding: 3%;
+}
+
+.loginFormContain{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #D9D9D980;
+  background-color: 0.3;
+  -webkit-box-shadow: 7px 4px 9px 2px rgba(0,0,0,0.83); 
+  box-shadow: 7px 4px 9px 2px rgba(0,0,0,0.83);
+  border-radius: 5%;
+  width: 70%;
+  margin: auto;
+  margin-top: 75px;
+  margin-bottom: 100px;
+
+}
+.loginFormContain .btn{
+  margin-bottom: 2%;
 }
 
 
@@ -588,7 +606,7 @@ justify-content: space-evenly;
   justify-content: space-around
 }
 body{
-  margin-top: 5%;
+  margin-top: 50px;
   width: 100%;
 }
 /* START OF FOOTER CSS */
