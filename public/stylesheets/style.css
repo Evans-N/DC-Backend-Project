@@ -324,15 +324,15 @@
 /* THIS IS THE START OF INDEX CSS */
 /* The hero image */
 .hero-image {
-background-image: url("../images/cliffside.jpg");
-height: 100%;
-width: 100%;
-/* Position and center the image to scale nicely on all screens */
-background-position: center;
-background-repeat: no-repeat;
-background-size: cover;
-color: white;
-}
+  background-image: url("../images/cliffside.jpg");
+  height: 100%;
+  width: 100%;
+  /* Position and center the image to scale nicely on all screens */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: white;
+  }
 /* Place text in the middle of the image */
 .logoContainer {
   display: flex;
@@ -353,27 +353,7 @@ justify-content: space-evenly;
 /* THIS IS THE END OF INDEX CSS */
 
 /* THIS IS THE START OF THE LOGIN CSS */
-.registerContainer{
-  background: #D9D9D980;
-  background-color: 0.3;
-  -webkit-box-shadow: 7px 4px 9px 2px rgba(0,0,0,0.83); 
-  box-shadow: 7px 4px 9px 2px rgba(0,0,0,0.83);
-  border-radius: 5%;
-  width: 100%;
-  margin-top: 12%;
-  padding: 3%;
-}
 
-.loginForm{
-  background: #D9D9D980;
-  background-color: 0.3;
-  -webkit-box-shadow: 7px 4px 9px 2px rgba(0,0,0,0.83); 
-  box-shadow: 7px 4px 9px 2px rgba(0,0,0,0.83);
-  border-radius: 5%;
-  width: 100%;
-  margin-top: 20%;
-  padding: 3%;
-}
 
 .loginFormContain{
   display: flex;
@@ -586,9 +566,9 @@ justify-content: space-evenly;
   display: flex;
   flex-wrap: wrap;
 }
-.carousel-item{
+/* .carousel-item{
   margin: auto;
-}
+} */
 .mainPage{
   display: flex;
   justify-content: space-around
@@ -621,5 +601,9 @@ body{
 }
 
 /* START OF FOOTER CSS */
+
+
+
+
 
 /* END OF FOOTER CSS */

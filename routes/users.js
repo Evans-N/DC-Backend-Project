@@ -7,6 +7,7 @@ const fs = require("fs");
 require('dotenv');
 var multer = require("multer"); //multi part form uploads...allows uploading of images
 var upload = multer({dest:'public/images/userImages'})
+
 const sessionOptions = {
    secret: process.env.SESSION_SECRET,
    resave: false,
@@ -25,12 +26,6 @@ router.use((req,res,next)=>{
   }
 })
 
-  
-  // res.locals -> for views
-  // res.redirect to login
-  // else{
-    // next()
-
 /* GET users listing. */
 router.get('/', function(req, res, next) {
   res.send('respond with a resource');
@@ -44,14 +39,10 @@ router.get('/landing', (req,res,next) => {
   const genTrips = db.any(getTrips);
   console.log('starting');
   genTrips.then((results)=> {
-    // res.send(results)
     res.render('landing', {
       tripInfo: results
     })
   })
-  //MY PROFILE
-  //MY TRIPS
-  //VIEW TRIPS
 });
 
 //========USER============//
@@ -90,15 +81,6 @@ router.get('/friends', (req,res,next) => {
 router.get('/tripCreate', (req,res,next) => {
   res.render('tripCreate');
 });
-
-// router.post('/tripCreateProcess', upload.single("trip_img"), (req,res,next) => {
-//   console.log(req.body)
-//   const newPath = `public/images/userImages/${req.file.originalname}`;
-//   fs.rename(req.file.path, newPath, (err)=>{
-//     if(err) throw error;
-//     console.log("file uploaded")
-//   })
-// })
 
 router.post('/tripCreateProcess', upload.single("trip_img"), (req,res,next) => {
   console.log(req.file)
@@ -159,7 +141,6 @@ router.get('/trips/:tripId', (req, res, next) => {
       let tripAttendanceData = tA //returns an array of people attending
       tripCreator.then((tC)=>{
         let tripCreatorData = tC //returns trip creator as object
-        // res.json(tripCreatorData)
         const isAttending = !!tripAttendanceData.find(attendee => attendee.id === user.id)
         res.render('tripGeneral', {
           isAttending: isAttending,

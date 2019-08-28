@@ -15,7 +15,7 @@ body{
 
 .container {
     margin-top: 2rem;
-    min-height: 80vh;
+    min-height: 100vh;
 }
 
 .container-fluid {
@@ -26,6 +26,10 @@ body{
     margin-top: 5rem
 }
 
+
+
+
+/* USER CARDS */
 
 
 .card-profile-stats {
