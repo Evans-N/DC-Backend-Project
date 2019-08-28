@@ -600,6 +600,9 @@ body{
   background-image: url("../images/PinClipart.com_saucepan-clipart_2005937.png")
 }
 
+.navbar-brand{
+  color: #D9D9D9
+}
 /* START OF FOOTER CSS */
 
 

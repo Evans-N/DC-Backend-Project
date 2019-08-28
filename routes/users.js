@@ -192,14 +192,16 @@ router.get('/userProfiles/:userId', (req,res,next) => {
               userData: userDataData,
               userTrips: userTripsData,
               userTripsCreated: userTripsCreatedData,
-              userTripsAttended: userTripsAttendedData
+              userTripsAttended: userTripsAttendedData,
+              myPage: false
             })
      
         } else {
             res.render('newProfile', {
             userData: userDataData,
             userTripsCreated: userTripsCreatedData,
-            userTripsAttended: userTripsAttendedData
+            userTripsAttended: userTripsAttendedData,
+            myPage: false
           })
           }
         })
