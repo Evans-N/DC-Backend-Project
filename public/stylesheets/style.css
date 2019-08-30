@@ -521,6 +521,7 @@ justify-content: space-evenly;
 .navbar-colors{
   background: #2B2D42;
   color: #D9D9D9;
+  text-decoration: none;
 }
 
 .menu-hover-lines {
@@ -617,7 +618,8 @@ body{
   width:200px;
 }
 .navbar-toggler{
-  background-image: url("../images/PinClipart.com_saucepan-clipart_2005937.png")
+  background-image: url("../images/PinClipart.com_saucepan-clipart_2005937.png");
+  background-repeat: no-repeat;
 }
 
 .navbar-brand{
